@@ -25,27 +25,30 @@ public class LocaleFile
 {
     internal Dictionary<string, string>? _locale;
 
-    public CultureInfo Culture { get; set; }
-
-    public LocaleFile(CultureInfo culture)
-    {
-        ArgumentNullException.ThrowIfNull(culture);
-
-        Culture = culture;
-    }
+    public string Language { get; set; }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="LocaleFile"/> class.
     /// </summary>
-    /// <param name="cultureName">The name of the culture to associate with the instance.</param>
-    /// <exception cref="ArgumentException">The <paramref name="cultureName"/> is empty.</exception>
-    /// <exception cref="ArgumentNullException">The <paramref name="cultureName"/> is <see langword="null"/>.</exception>
-    /// <exception cref="CultureNotFoundException">The <paramref name="cultureName"/> does not represents an existing culture.</exception>
-    public LocaleFile(string cultureName)
+    /// <param name="languageName">The name of the language to associate with the instance.</param>
+    /// <exception cref="ArgumentException">The <paramref name="languageName"/> is empty.</exception>
+    /// <exception cref="ArgumentNullException">The <paramref name="languageName"/> is <see langword="null"/>.</exception>
+    public LocaleFile(string languageName)
     {
-        ArgumentException.ThrowIfNullOrEmpty(cultureName);
+        ArgumentException.ThrowIfNullOrEmpty(languageName);
 
-        Culture = new(cultureName);
+        Language = languageName;
+    }
+
+    /// <summary>
+    /// Adds the specified key to this locale file.
+    /// </summary>
+    /// <param name="key">The key.</param>
+    /// <param name="value">The value.</param>
+    public void Add(string key, string value)
+    {
+        _locale ??= new();
+        _locale.Add(key, value);
     }
 
     /// <summary>
