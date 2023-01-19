@@ -34,4 +34,19 @@
   <ItemGroup>
     <EditorConfigFiles Remove="G:\DevProjs\Libraries\NexusKrop.IceCube\NexusKrop.IceCube\.editorconfig" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Exceptions\ExceptionHelperResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ExceptionHelperResources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Exceptions\ExceptionHelperResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ExceptionHelperResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
 </Project>
