@@ -12,9 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-namespace NexusKrop.IceCube.Localisation;
+namespace NexusKrop.IceCube.Locale;
 
 using SmartFormat;
+using System.Globalization;
 using System.Text.Json;
 
 /// <summary>
@@ -23,6 +24,29 @@ using System.Text.Json;
 public class LocaleFile
 {
     internal Dictionary<string, string>? _locale;
+
+    public CultureInfo Culture { get; set; }
+
+    public LocaleFile(CultureInfo culture)
+    {
+        ArgumentNullException.ThrowIfNull(culture);
+
+        Culture = culture;
+    }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="LocaleFile"/> class.
+    /// </summary>
+    /// <param name="cultureName">The name of the culture to associate with the instance.</param>
+    /// <exception cref="ArgumentException">The <paramref name="cultureName"/> is empty.</exception>
+    /// <exception cref="ArgumentNullException">The <paramref name="cultureName"/> is <see langword="null"/>.</exception>
+    /// <exception cref="CultureNotFoundException">The <paramref name="cultureName"/> does not represents an existing culture.</exception>
+    public LocaleFile(string cultureName)
+    {
+        ArgumentException.ThrowIfNullOrEmpty(cultureName);
+
+        Culture = new(cultureName);
+    }
 
     /// <summary>
     /// Asynchronously reads the specified file.
