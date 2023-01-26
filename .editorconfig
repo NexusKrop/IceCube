@@ -3,6 +3,8 @@ root = true
 [*.cs]
 resharper_redundant_name_qualifier_highlighting = none
 
+resharper_brace_style = next_line
+
 #### Naming styles ####
 
 # Naming rules
