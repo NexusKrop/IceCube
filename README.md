@@ -1,5 +1,9 @@
 # IceCube
 
+> Due to the current issues with Codeberg software, this project have moved to
+> a [new home](https://bitbucket.org/nexuskrop/icecube/src) until further
+> notice.
+
 The IceCube project contains common code used by various C# NexusKrop projects,
 across different platforms.
 
