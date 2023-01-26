@@ -1,9 +1,5 @@
 ﻿namespace NexusKrop.IceCube.Exceptions;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 public static class ExceptionHelper
 {
@@ -32,6 +28,31 @@ public static class ExceptionHelper
         {
             throw new DirectoryNotFoundException(string.Format(ExceptionHelperResources.DirectoryNotFound,
                 directoryName));
+        }
+    }
+
+    /// <summary>
+    /// Throws <see cref="NotSupportedException"/> if the current platform is not Microsoft Windows.
+    /// </summary>
+    public static void ThrowIfNotOnWindows()
+    {
+        if (!OperatingSystem.IsWindows())
+        {
+            throw new NotSupportedException(string.Format(ExceptionHelperResources.PlatformRequired,
+                "windows"));
+        }
+    }
+
+    /// <summary>
+    /// Throws <see cref="NotSupportedException"/> if the current platform is not GNU/Linux or any other
+    /// Linux that is supported by .NET.
+    /// </summary>
+    public static void ThrowIfNotOnLinux()
+    {
+        if (!OperatingSystem.IsLinux())
+        {
+            throw new NotSupportedException(string.Format(ExceptionHelperResources.PlatformRequired,
+                "linux"));
         }
     }
 }

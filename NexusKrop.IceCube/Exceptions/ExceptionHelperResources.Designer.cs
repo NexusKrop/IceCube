@@ -77,5 +77,11 @@ namespace NexusKrop.IceCube.Exceptions {
                 return ResourceManager.GetString("FileNotFound", resourceCulture);
             }
         }
+
+        internal static string PlatformRequired {
+            get {
+                return ResourceManager.GetString("PlatformRequired", resourceCulture);
+            }
+        }
     }
 }
