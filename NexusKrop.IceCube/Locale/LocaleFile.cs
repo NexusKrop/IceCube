@@ -39,7 +39,7 @@ public class LocaleFile
     /// <exception cref="ArgumentNullException">The <paramref name="languageName"/> is <see langword="null"/>.</exception>
     public LocaleFile(string languageName)
     {
-        Checks.NotNullOrWhitespace(languageName, nameof(languageName));
+        Checks.ArgNotNullOrWhitespace(languageName, nameof(languageName));
 
         Language = languageName;
     }

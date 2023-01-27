@@ -34,9 +34,9 @@ public static class Checks
     }
 
 #if NET6_0_OR_GREATER
-    public static void NotNullOrWhitespace(string value, [CallerArgumentExpression("value")] string? argName = "???")
+    public static void ArgNotNullOrWhitespace(string? value, [CallerArgumentExpression("value")] string? argName = "???")
 #else
-    public static void NotNullOrWhitespace(string value, string argName)
+    public static void ArgNotNullOrWhitespace(string value, string argName)
 #endif
     {
         if (value == null) throw new ArgumentNullException(argName);
