@@ -37,6 +37,9 @@ public static class ProcessUtil
     /// </para>
     /// </remarks>
     /// <returns>The process, or <see langword="null"/> if no process were created.</returns>
+    /// <seealso cref="Process"/>
+    /// <seealso cref="ProcessStartInfo"/>
+    /// <seealso cref="Process.Start"/>
     public static Process? ShellExecute(string name)
     {
         return Process.Start(new ProcessStartInfo(name)

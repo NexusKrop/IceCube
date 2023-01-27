@@ -77,10 +77,31 @@ namespace NexusKrop.IceCube.Exceptions {
                 return ResourceManager.GetString("FileNotFound", resourceCulture);
             }
         }
-
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Only platform &quot;{0}&quot; is supported..
+        /// </summary>
         internal static string PlatformRequired {
             get {
                 return ResourceManager.GetString("PlatformRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Only platform &quot;{0}&quot; version at least &quot;{1}&quot; supported..
+        /// </summary>
+        internal static string PlatformVersionRequired {
+            get {
+                return ResourceManager.GetString("PlatformVersionRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The specified string is empty or consisted of only whitespaces..
+        /// </summary>
+        internal static string StringWhitespace {
+            get {
+                return ResourceManager.GetString("StringWhitespace", resourceCulture);
             }
         }
     }

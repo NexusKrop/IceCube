@@ -14,8 +14,10 @@
 
 namespace NexusKrop.IceCube;
 
+using NexusKrop.IceCube.Exceptions;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 
 /// <summary>
 /// Provides extension methods for collections.
@@ -40,7 +42,7 @@ public static class CollectionExtensions
     /// </remarks>
     public static bool IsEmpty<T>(this IEnumerable<T> enumerable)
     {
-        foreach (var _ in enumerable)
+        foreach (var _ in Checks.ArgNotNull(enumerable, nameof(enumerable)))
         {
             return true;
         }
@@ -67,12 +69,11 @@ public static class CollectionExtensions
     /// <param name="action">The action for iteration.</param>
     public static void Iterate<T>(this IEnumerable<T> enumerable, Action<T> action)
     {
-        ArgumentNullException.ThrowIfNull(action);
-        ArgumentNullException.ThrowIfNull(enumerable);
+        var act = Checks.ArgNotNull(action, nameof(action));
 
-        foreach (var x in enumerable)
+        foreach (var x in Checks.ArgNotNull(enumerable, nameof(enumerable)))
         {
-            action(x);
+            act(x);
         }
     }
 
@@ -86,15 +87,14 @@ public static class CollectionExtensions
     /// <param name="action">The action for iteration.</param>
     public static void Iterate<T>(this IEnumerable<T> enumerable, Predicate<T> validator, Action<T> action)
     {
-        ArgumentNullException.ThrowIfNull(action);
-        ArgumentNullException.ThrowIfNull(enumerable);
-        ArgumentNullException.ThrowIfNull(validator);
+        var act = Checks.ArgNotNull(action, nameof(action));
+        var vali = Checks.ArgNotNull(validator, nameof(validator));
 
-        foreach (var x in enumerable)
+        foreach (var x in Checks.ArgNotNull(enumerable, nameof(enumerable)))
         {
-            if (validator(x))
+            if (vali(x))
             {
-                action(x);
+                act(x);
             }
         }
     }

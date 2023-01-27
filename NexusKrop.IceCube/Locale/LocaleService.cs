@@ -5,6 +5,7 @@ using SmartFormat;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -62,7 +63,7 @@ public class LocaleService
 
     public async Task ReadFromDirectoryAsync(string directory)
     {
-        ExceptionHelper.ThrowIfDirectoryNotExist(directory);
+        Checks.DirectoryExists(directory);
 
         foreach (var file in Directory.GetFiles(directory, "*.json"))
         {

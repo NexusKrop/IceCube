@@ -14,9 +14,13 @@
 
 namespace NexusKrop.IceCube.Locale;
 
+using NexusKrop.IceCube.Exceptions;
 using SmartFormat;
+using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Text.Json;
+using System.Threading.Tasks;
 
 /// <summary>
 /// Represents a simple locale file.
@@ -35,7 +39,7 @@ public class LocaleFile
     /// <exception cref="ArgumentNullException">The <paramref name="languageName"/> is <see langword="null"/>.</exception>
     public LocaleFile(string languageName)
     {
-        ArgumentException.ThrowIfNullOrEmpty(languageName);
+        Checks.NotNullOrWhitespace(languageName, nameof(languageName));
 
         Language = languageName;
     }
