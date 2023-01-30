@@ -12,9 +12,27 @@ using System.Threading.Tasks;
 
 public class LocaleService
 {
+    public LocaleService()
+    {
+        var culture = CultureInfo.CurrentCulture.Name;
+
+#if NET6_0_OR_GREATER
+        if (!OperatingSystem.IsWindows() && string.IsNullOrWhiteSpace(culture))
+        {
+            CurrentLanguage = UnitedStatesEnglish;     
+        }
+        else
+        {
+            CurrentLanguage = culture;
+        }
+#else
+        CurrentLanguage = culture;
+#endif
+    }
+
     private readonly Dictionary<string, LocaleFile> _locales = new();
 
-    public string CurrentLanguage { get; set; } = CultureInfo.CurrentCulture.Name;
+    public string CurrentLanguage { get; set; }
 
     public static readonly string UnitedStatesEnglish = "en-US";
 

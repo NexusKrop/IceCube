@@ -14,6 +14,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added extension method `Iterate<T>(Func<bool, T>)` for enumerables that breaks if the `Func` returns `false`
 - Added check method `ProcessRunning(Process)` to check (assert) if a process is running or not
 
+### Changed
+
+- Fixed an issue resulted in `LanguageService.CurrentLanguage` not producing a default value outside of Windows
+
 ### Deprecated
 
 - Made `Iterate<T>(Predicate<T>, Action<T>)` extension method obsolete in favour of `Iterate<T>(Func<bool, T>)`
