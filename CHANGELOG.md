@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added extension method `EndGracefully()` for `Process` class that ends a process gracefully
   (behaviour depending on platform) for Windows and GNU/Linux on .NET 6+
 - Added extension method `Iterate<T>(Func<bool, T>)` for enumerables that breaks if the `Func` returns `false`
+- Added check method `ProcessRunning(Process)` to check (assert) if a process is running or not
 
 ### Deprecated
 
