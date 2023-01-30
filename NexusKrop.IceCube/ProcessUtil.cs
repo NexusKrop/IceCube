@@ -13,7 +13,13 @@
 // limitations under the License.
 
 namespace NexusKrop.IceCube;
+
+using NexusKrop.IceCube.Exceptions;
+using NexusKrop.IceCube.Interop;
+using System;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
+using System.Runtime.Versioning;
 
 /// <summary>
 /// Provides utilities regarding processes.
@@ -47,4 +53,65 @@ public static class ProcessUtil
             UseShellExecute = true
         });
     }
+
+#if NET6_0_OR_GREATER
+    /// <summary>
+    /// Requests the specified <paramref name="process"/> to shutdown gracefully.
+    /// </summary>
+    /// <remarks>
+    /// <note type="api">
+    /// This API is only available in .NET 6.0 or later. Other frameworks are not supported.
+    /// </note>
+    /// <para>
+    /// On GNU/Linux (or any similar platform, such as GNU/Hurd or a BSD with GNU C Library), <c>SIGTERM</c> is sent. This signal instructs the target
+    /// process to gracefully end itself, which means the process can do clean up, save its work, etc. before shutting down. However,
+    /// if a process is not responding, or encountered deadlock, the program would not be able to respond to the signal and thus does not exit. In this
+    /// situation, use <see cref="Process.Kill"/>.
+    /// </para>
+    /// <para>
+    /// On Microsoft Windows, the call is forwarded to <see cref="Process.CloseMainWindow"/>.
+    /// </para>
+    /// </remarks>
+    /// <param name="process">The process.</param>
+    /// <exception cref="ArgumentException">The <paramref name="process"/> specified is invalid.</exception>
+    /// <exception cref="PlatformNotSupportedException">The current operating system is not GNU/Linux (or similar), nor Microsoft Windows.</exception>
+    /// <exception cref="UnauthorizedAccessException">The caller does not have permission to end the specified process.</exception>
+    public static void EndGracefully(this Process process)
+    {
+        var proc = Checks.ArgNotNull(process, nameof(process));
+
+        if (proc.HasExited)
+        {
+            return;
+        }
+
+        if (OperatingSystem.IsLinux())
+        {
+            EndGracefullyLinuxInternal(process);
+        }
+        else if (OperatingSystem.IsWindows())
+        {
+            process.CloseMainWindow();
+        }
+        else
+        {
+            throw new PlatformNotSupportedException("You are not running on GNU/Linux (or similar), or Microsoft Windows.");
+        }
+    }
+
+    [SupportedOSPlatform("linux")]
+    private static void EndGracefullyLinuxInternal(Process process)
+    {
+        if (LibC.kill(process.Id, 15) != 0)
+        {
+            switch (Marshal.GetLastPInvokeError())
+            {
+                case 1:
+                    throw new UnauthorizedAccessException("You are not allowed to end the specified process.");
+                case 3:
+                    throw new ArgumentException("No such process.", nameof(process));
+            }
+        }
+    }
+#endif
 }
