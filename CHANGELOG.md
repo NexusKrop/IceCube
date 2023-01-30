@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.1-alpha] - 2023/1/30
+
 ### Added
 
 - Added extension method `EndGracefully()` for `Process` class that ends a process gracefully
@@ -22,9 +24,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Made `Iterate<T>(Predicate<T>, Action<T>)` extension method obsolete in favour of `Iterate<T>(Func<bool, T>)`
 
-## [0.1.0]
+## [0.1.0-alpha] - 2023/1/27
 
 - Initial release.
 
-[Unreleased]: https://github.com/NexusKrop/IceCube/compare/v0.1.0-alpha...HEAD
-[0.1.0]: https://github.com/NexusKrop/IceCube/releases/tag/v0.1.0-alpha
+[Unreleased]: https://github.com/NexusKrop/IceCube/compare/v0.1.1-alpha...HEAD
+[0.1.1-alpha]: https://github.com/NexusKrop/IceCube/compare/v0.1.0-alpha...v0.1.1-alpha
+[0.1.0-alpha]: https://github.com/NexusKrop/IceCube/releases/tag/v0.1.0-alpha
