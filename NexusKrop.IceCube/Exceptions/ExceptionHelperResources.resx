@@ -129,6 +129,9 @@
   <data name="PlatformVersionRequired" xml:space="preserve">
     <value>Only platform "{0}" version at least "{1}" supported.</value>
   </data>
+  <data name="ProcessExited" xml:space="preserve">
+    <value>The specified process has exited.</value>
+  </data>
   <data name="StringWhitespace" xml:space="preserve">
     <value>The specified string is empty or consisted of only whitespaces.</value>
   </data>

@@ -97,6 +97,15 @@ namespace NexusKrop.IceCube.Exceptions {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The specified process has exited..
+        /// </summary>
+        internal static string ProcessExited {
+            get {
+                return ResourceManager.GetString("ProcessExited", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The specified string is empty or consisted of only whitespaces..
         /// </summary>
         internal static string StringWhitespace {

@@ -14,14 +14,38 @@
 
 namespace NexusKrop.IceCube.Exceptions;
 using System;
+using System.Diagnostics;
 using System.IO;
+#if NET6_0_OR_GREATER
 using System.Runtime.CompilerServices;
+#endif
 
 /// <summary>
 /// Provides methods to check and assert certain conditions.
 /// </summary>
 public static class Checks
 {
+    /// <summary>
+    /// Throws <see cref="ArgumentException"/> if the specified <paramref name="process"/> is <see langword="null"/> or has exited.
+    /// </summary>
+    /// <param name="process">The process to check.</param>
+    /// <param name="argName">The name of the argument. On .NET 6+, the name of the argument that was checked for is automatically determined by runtime
+    /// and thus should not be passed explicitly.</param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentNullException"></exception>
+    /// <exception cref="ArgumentException"></exception>
+#if NET6_0_OR_GREATER
+    public static Process ProcessRunning(Process process, [CallerArgumentExpression("value")] string argName = "???")
+#else
+    public static Process ProcessRunning(Process process, string argName)
+#endif
+    {
+        if (process == null) throw new ArgumentNullException(argName);
+        if (process.HasExited) throw new ArgumentException(ExceptionHelperResources.ProcessExited, argName);
+
+        return process;
+    }
+
 #if NET6_0_OR_GREATER
     public static T ArgNotNull<T>(T value, [CallerArgumentExpression("value")] string argName = "???")
 #else
