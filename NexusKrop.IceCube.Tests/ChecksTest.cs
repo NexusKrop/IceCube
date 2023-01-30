@@ -31,6 +31,37 @@ public class ChecksTest
         Assert.AreEqual("arg", x.ParamName);
     }
 
+    [TestMethod]
+    public void FileExists_ThrowsIfNotExist()
+    {
+        Assert.ThrowsException<FileNotFoundException>(() =>
+            Checks.FileExists("/asdasd/as/f/as/fas/d/asd/as/ds/"));
+    }
+
+    [TestMethod]
+    public void DirectoryExists_ThrowsIfNotExist()
+    {
+        Assert.ThrowsException<DirectoryNotFoundException>(() =>
+            Checks.DirectoryExists("/asdf/ew/g/rr/a/e/gwe/fw/ef"));
+    }
+
+    [TestMethod]
+    public void OsPlatformCheckTest()
+    {
+        if (OperatingSystem.IsWindows())
+        {
+            Checks.OnWindows();
+        }
+        else if (OperatingSystem.IsLinux())
+        {
+            Checks.OnLinux();
+        }
+        else
+        {
+            Assert.Fail("Unknown OS platform.");
+        }
+    }
+
     private static void ArgNotNullOrWhitespace_Internal(string? arg)
     {
         Checks.ArgNotNullOrWhitespace(arg);
