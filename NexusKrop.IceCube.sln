@@ -7,11 +7,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NexusKrop.IceCube", "NexusK
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{63E4B2AD-419C-4B05-A6CF-2EF615CA017D}"
 	ProjectSection(SolutionItems) = preProject
+		CHANGELOG.md = CHANGELOG.md
 		LICENSE.txt = LICENSE.txt
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NexusKrop.IceCube.Tests", "NexusKrop.IceCube.Tests\NexusKrop.IceCube.Tests.csproj", "{D8E514F5-4DF9-489B-AD88-1DC7DB1B3FDC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NexusKrop.IceCube.Tests", "NexusKrop.IceCube.Tests\NexusKrop.IceCube.Tests.csproj", "{D8E514F5-4DF9-489B-AD88-1DC7DB1B3FDC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
