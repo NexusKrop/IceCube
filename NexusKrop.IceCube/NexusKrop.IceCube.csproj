@@ -26,7 +26,6 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
-    <None Include="G:\DevProjs\Libraries\NexusKrop.IceCube\NexusKrop.IceCube\.editorconfig" />
   </ItemGroup>
 
   <ItemGroup>
