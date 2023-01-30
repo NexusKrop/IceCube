@@ -1,5 +1,6 @@
 ﻿namespace NexusKrop.IceCube.Tests;
 
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NexusKrop.IceCube.Locale;
 using System.Globalization;
 
@@ -9,7 +10,18 @@ public class LocaleServiceTest
     [TestMethod]
     public async Task ReadFromDirectoryTest()
     {
-        var temp = Path.Combine(Path.GetTempPath(), $"LocaleServiceTest-{DateTime.Now.Ticks}");
+        string tempRoot;
+
+        if (OperatingSystem.IsWindows())
+        {
+            tempRoot = Path.GetTempPath();
+        }
+        else
+        {
+            tempRoot = "$HOME/.icecube/test";
+        }
+
+        var temp = Path.Combine(tempRoot, $"LocaleServiceTest-{DateTime.Now.Ticks}");
 
         if (Directory.Exists(temp))
         {
