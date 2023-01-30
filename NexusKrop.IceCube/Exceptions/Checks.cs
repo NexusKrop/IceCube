@@ -35,7 +35,7 @@ public static class Checks
     /// <exception cref="ArgumentNullException"></exception>
     /// <exception cref="ArgumentException"></exception>
 #if NET6_0_OR_GREATER
-    public static Process ProcessRunning(Process process, [CallerArgumentExpression("value")] string argName = "???")
+    public static Process ProcessRunning(Process process, [CallerArgumentExpression("process")] string argName = "???")
 #else
     public static Process ProcessRunning(Process process, string argName)
 #endif
