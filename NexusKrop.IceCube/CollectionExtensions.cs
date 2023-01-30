@@ -78,13 +78,38 @@ public static class CollectionExtensions
     }
 
     /// <summary>
+    /// Iterates the specified <paramref name="enumerable"/> with the specified <paramref name="action"/>, and <see langword="break"/>s the iteration
+    /// if <paramref name="action"/> returns <see langword="false"/>.
+    /// </summary>
+    /// <typeparam name="T">The type of the <paramref name="enumerable"/> to iterate.</typeparam>
+    /// <param name="enumerable">The enumerable to iterate.</param>
+    /// <param name="action">The action for iteration. If the action returns <see langword="false"/>, the iteration will break; otherwise, it continues.</param>
+    public static void Iterate<T>(this IEnumerable<T> enumerable, Func<T, bool> action)
+    {
+        var act = Checks.ArgNotNull(action, nameof(action));
+
+        foreach (var x in Checks.ArgNotNull(enumerable, nameof(enumerable)))
+        {
+            if (!act(x))
+            {
+                break;
+            }
+        }
+    }
+
+    /// <summary>
     /// Iterates the specified <paramref name="enumerable"/> with the specified <paramref name="action"/> for all
     /// items that passes the <paramref name="validator"/>.
     /// </summary>
+    /// <remarks>
+    /// Use of this method is no longer recommended as this method will make your code even more clutter. Instead, consider
+    /// using <see cref="Iterate{T}(IEnumerable{T}, Func{T, bool})"/>.
+    /// </remarks>
     /// <typeparam name="T">The type of the <paramref name="enumerable"/> to iterate.</typeparam>
     /// <param name="enumerable">The enumerable to iterate.</param>
     /// <param name="validator">The predicate.</param>
     /// <param name="action">The action for iteration.</param>
+    [Obsolete("In favour of Iterate<T>(IEnumerable<T>, Func<T, bool>)")]
     public static void Iterate<T>(this IEnumerable<T> enumerable, Predicate<T> validator, Action<T> action)
     {
         var act = Checks.ArgNotNull(action, nameof(action));
