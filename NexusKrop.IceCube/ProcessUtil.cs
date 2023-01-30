@@ -15,11 +15,14 @@
 namespace NexusKrop.IceCube;
 
 using NexusKrop.IceCube.Exceptions;
-using NexusKrop.IceCube.Interop;
 using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Runtime.Versioning;
+
+#if NET6_0_OR_GREATER
+using NexusKrop.IceCube.Interop;
+#endif
 
 /// <summary>
 /// Provides utilities regarding processes.
