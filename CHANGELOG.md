@@ -5,7 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [0.1.2-alpha] - 2023/2/1
+
+### Changed
+
+- Decouple localisation module from IceCube main package
 
 ## [0.1.1-alpha] - 2023/1/30
 
@@ -28,6 +32,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release.
 
-[Unreleased]: https://github.com/NexusKrop/IceCube/compare/v0.1.1-alpha...HEAD
+[Unreleased]: https://github.com/NexusKrop/IceCube/compare/v0.1.2-alpha...HEAD
+[0.1.2-alpha]: https://github.com/NexusKrop/IceCube/compare/v0.1.1-alpha...v0.1.2-alpha
 [0.1.1-alpha]: https://github.com/NexusKrop/IceCube/compare/v0.1.0-alpha...v0.1.1-alpha
 [0.1.0-alpha]: https://github.com/NexusKrop/IceCube/releases/tag/v0.1.0-alpha
