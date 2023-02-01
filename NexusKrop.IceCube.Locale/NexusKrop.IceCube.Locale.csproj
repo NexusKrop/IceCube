@@ -3,6 +3,24 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net6</TargetFrameworks>
     <LangVersion>latest</LangVersion>
+
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <IncludeSymbols>True</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+
+    <!-- Package Version -->
+    <VersionPrefix>0.1.2</VersionPrefix>
+    <VersionSuffix>alpha</VersionSuffix>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <Authors>WithLithum</Authors>
+    <Company>NexusKrop</Company>
+    <Product>$(SolutionName)</Product>
+    <Description>IceCube localisation module</Description>
+    <Copyright>(C) NexusKrop &amp; contributors 2023</Copyright>
+    <PackageProjectUrl>https://github.com/NexusKrop/IceCube</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/NexusKrop/IceCube</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
