@@ -1,9 +1,5 @@
 # IceCube
 
-![GitHub top language](https://img.shields.io/github/languages/top/NexusKrop/IceCube?label=%20&logo=csharp&style=flat-square)
-![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/NexusKrop/IceCube?color=gray&label=%20&logo=git&logoColor=white&sort=semver&style=flat-square)
-![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/NexusKrop/IceCube/dotnet.yml?logo=github&style=flat-square)
-
 The IceCube project contains common code used by various C# NexusKrop projects,
 across different platforms.
 
