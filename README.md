@@ -7,27 +7,30 @@ across different platforms.
 
 ### NuGet
 
-All prebuilt binaries are uploaded to our [MyGet feed](https://www.myget.org/feed/Details/nexuskrop). This is a package
-currently only for internal usage but it will be released on `nuget.org` whenever any other package requires it.
+This is the recommended method.
+Newer version can be found in the Packages page (if theres none means we have not yet released one).
 
-| Package | Version |
-| ------- | ------ |
-| [NexusKrop.IceCube](https://www.myget.org/feed/nexuskrop/package/nuget/NexusKrop.IceCube) | ![MyGet](https://img.shields.io/myget/nexuskrop/v/NexusKrop.IceCube?color=gray&label=%20&logo=nuget&style=flat-square) |
+This is a package currently only for internal usage but it will be released on `nuget.org` whenever any other package requires it.
 
 ### Building from Source
 
-#### Via command line
+#### Via .NET CLI
 
 - Open project folder, open your terminal.
-- Make sure [.NET 6.0 SDK](https://dotnet.microsoft.com) or later is installed.
+- Make sure [.NET 7 SDK](https://dotnet.microsoft.com) or later is installed.
 - Run `dotnet build` in your terminal.
 - Binaries should be available in `NexusKrop.IceCube/bin`.
 
 #### Via Visual Studio
+
 - Make sure you have Visual Studio 2022 installed with .NET Desktop Development workload, and .NET 7 SDK.
 - Open solution with Visual Studio 2022.
 - Click `Build -> Build Solution`.
 - Binaries should be available in `NexusKrop.IceCube/bin`.
+
+### Via other tools
+
+Follow your IDE/tool instructions to build this project.
 
 ## Contributing
 
