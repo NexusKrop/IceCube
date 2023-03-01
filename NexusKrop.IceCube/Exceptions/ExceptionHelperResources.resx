@@ -120,6 +120,9 @@
   <data name="DirectoryNotFound" xml:space="preserve">
     <value>Directory or part of path "{0}" not found.</value>
   </data>
+  <data name="Disposed" xml:space="preserve">
+    <value>The operation is invalid because this instance was disposed.</value>
+  </data>
   <data name="FileNotFound" xml:space="preserve">
     <value>File or part of path "{0}" not found.</value>
   </data>

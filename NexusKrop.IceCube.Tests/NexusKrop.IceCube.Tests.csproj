@@ -6,6 +6,7 @@
     <Nullable>enable</Nullable>
 
     <IsPackable>false</IsPackable>
+    <IsTestProject>yrue</IsTestProject>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,7 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NexusKrop.IceCube.Locale\NexusKrop.IceCube.Locale.csproj" />
     <ProjectReference Include="..\NexusKrop.IceCube\NexusKrop.IceCube.csproj" />
   </ItemGroup>
 

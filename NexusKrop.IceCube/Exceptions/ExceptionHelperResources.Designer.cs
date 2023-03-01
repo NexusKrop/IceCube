@@ -70,6 +70,15 @@ namespace NexusKrop.IceCube.Exceptions {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The operation is invalid because this instance was disposed..
+        /// </summary>
+        internal static string Disposed {
+            get {
+                return ResourceManager.GetString("Disposed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to File or part of path &quot;{0}&quot; not found..
         /// </summary>
         internal static string FileNotFound {

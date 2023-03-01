@@ -96,31 +96,4 @@ public static class CollectionExtensions
             }
         }
     }
-
-    /// <summary>
-    /// Iterates the specified <paramref name="enumerable"/> with the specified <paramref name="action"/> for all
-    /// items that passes the <paramref name="validator"/>.
-    /// </summary>
-    /// <remarks>
-    /// Use of this method is no longer recommended as this method will make your code even more clutter. Instead, consider
-    /// using <see cref="Iterate{T}(IEnumerable{T}, Func{T, bool})"/>.
-    /// </remarks>
-    /// <typeparam name="T">The type of the <paramref name="enumerable"/> to iterate.</typeparam>
-    /// <param name="enumerable">The enumerable to iterate.</param>
-    /// <param name="validator">The predicate.</param>
-    /// <param name="action">The action for iteration.</param>
-    [Obsolete("In favour of Iterate<T>(IEnumerable<T>, Func<T, bool>)")]
-    public static void Iterate<T>(this IEnumerable<T> enumerable, Predicate<T> validator, Action<T> action)
-    {
-        var act = Checks.ArgNotNull(action, nameof(action));
-        var vali = Checks.ArgNotNull(validator, nameof(validator));
-
-        foreach (var x in Checks.ArgNotNull(enumerable, nameof(enumerable)))
-        {
-            if (vali(x))
-            {
-                act(x);
-            }
-        }
-    }
 }
