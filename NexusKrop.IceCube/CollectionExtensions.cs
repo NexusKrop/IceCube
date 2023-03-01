@@ -16,7 +16,6 @@ namespace NexusKrop.IceCube;
 
 using NexusKrop.IceCube.Exceptions;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 
 /// <summary>
@@ -40,12 +39,19 @@ public static class CollectionExtensions
     /// However, <see cref="IsEmpty{T}(ICollection{T})"/> is more perferrable if available.
     /// </para>
     /// </remarks>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Major Bug", "S1751:Loops with at most one iteration should be refactored", Justification = "Meant to do so")]
     public static bool IsEmpty<T>(this IEnumerable<T> enumerable)
     {
+#if NET_70_OR_GREATER
+        foreach (var _ in Checks.ArgNotNull(enumerable))
+#else
+#pragma warning disable S3236 // Caller information arguments should not be provided explicitly
         foreach (var _ in Checks.ArgNotNull(enumerable, nameof(enumerable)))
+#endif
         {
             return true;
         }
+#pragma warning restore S3236 // Caller information arguments should not be provided explicitly
 
         return false;
     }
@@ -69,9 +75,17 @@ public static class CollectionExtensions
     /// <param name="action">The action for iteration.</param>
     public static void Iterate<T>(this IEnumerable<T> enumerable, Action<T> action)
     {
+#if NET7_0_OR_GREATER
+        var act = Checks.ArgNotNull(action);
+#else
         var act = Checks.ArgNotNull(action, nameof(action));
+#endif
 
+#if NET7_0_OR_GREATER
+        foreach (var x in Checks.ArgNotNull(enumerable))
+#else
         foreach (var x in Checks.ArgNotNull(enumerable, nameof(enumerable)))
+#endif
         {
             act(x);
         }
@@ -86,9 +100,17 @@ public static class CollectionExtensions
     /// <param name="action">The action for iteration. If the action returns <see langword="false"/>, the iteration will break; otherwise, it continues.</param>
     public static void Iterate<T>(this IEnumerable<T> enumerable, Func<T, bool> action)
     {
+#if NET7_0_OR_GREATER
+        var act = Checks.ArgNotNull(action);
+#else
         var act = Checks.ArgNotNull(action, nameof(action));
+#endif
 
+#if NET7_0_OR_GREATER
+        foreach (var x in Checks.ArgNotNull(enumerable))
+#else
         foreach (var x in Checks.ArgNotNull(enumerable, nameof(enumerable)))
+#endif
         {
             if (!act(x))
             {
