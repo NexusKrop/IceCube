@@ -1,15 +1,12 @@
 ﻿namespace NexusKrop.IceCube.Tests;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-[TestClass]
+using NUnit.Framework;
+using System.Collections.Generic;
+
 public class CollectionExtensionTest
 {
-    [TestMethod]
-    public void IterateActionTest()
+    [Test]
+    public void Iterate_Action()
     {
         var iterated = 0;
 
@@ -27,11 +24,11 @@ public class CollectionExtensionTest
             iterated++;
         });
 
-        Assert.AreEqual(5, iterated);
+        Assert.That(iterated, Is.EqualTo(5));
     }
 
-    [TestMethod]
-    public void IterateFuncTest()
+    [Test]
+    public void Iterate_Func()
     {
         var iterated = 0;
 
@@ -57,6 +54,7 @@ public class CollectionExtensionTest
             return true;
         });
 
-        Assert.AreEqual(5, iterated);
+        Assert.That(iterated, Is.EqualTo(5));
     }
 }
+

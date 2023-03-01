@@ -1,17 +1,17 @@
-﻿namespace NexusKrop.IceCube.Tests;
+namespace NexusKrop.IceCube.Tests;
 
 using NexusKrop.IceCube.IO;
 
-[TestClass]
 public class BigEndianIOTest
 {
     public const string HELLO_WORLD = "Hello, World!";
 
-    [TestMethod]
-    public void BigEndianStringTest()
+    [Test]
+    public void StringReadWriteTest()
     {
         byte[] buffer;
 
+        // Write "Hello, World!" to stream
         using (var streamA = new MemoryStream())
         {
             var writer = new BigEndianBinaryWriter(streamA);
@@ -22,6 +22,7 @@ public class BigEndianIOTest
 
         string str;
 
+        // Read the string from stream
         using (var streamB = new MemoryStream(buffer))
         {
             var reader = new BigEndianBinaryReader(streamB);
@@ -29,6 +30,6 @@ public class BigEndianIOTest
             str = reader.ReadString();
         }
 
-        Assert.AreEqual(HELLO_WORLD, str);
+        Assert.That(str, Is.EqualTo(HELLO_WORLD));
     }
 }

@@ -1,16 +1,12 @@
 ﻿namespace NexusKrop.IceCube.Tests;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-[TestClass]
+using NUnit.Framework;
+
 public class MathUtilTest
 {
-    [TestMethod]
+    [Test]
     public void PrecentageTest()
     {
-        Assert.AreEqual(20, MathUtil.CalculatePercentage(2, 10));
+        Assert.That(MathUtil.CalculatePercentage(2, 10), Is.EqualTo(20));
     }
 }

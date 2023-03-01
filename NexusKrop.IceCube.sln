@@ -13,7 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentat
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NexusKrop.IceCube.Tests", "NexusKrop.IceCube.Tests\NexusKrop.IceCube.Tests.csproj", "{D8E514F5-4DF9-489B-AD88-1DC7DB1B3FDC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NexusKrop.IceCube.Tests", "NexusKrop.IceCube.Tests\NexusKrop.IceCube.Tests.csproj", "{0B313D82-FDA8-4ADC-9A2D-0DD57BD1D4DA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,10 +25,10 @@ Global
 		{6811D118-076A-4718-94B3-0F9F4E2029A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6811D118-076A-4718-94B3-0F9F4E2029A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6811D118-076A-4718-94B3-0F9F4E2029A0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D8E514F5-4DF9-489B-AD88-1DC7DB1B3FDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D8E514F5-4DF9-489B-AD88-1DC7DB1B3FDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D8E514F5-4DF9-489B-AD88-1DC7DB1B3FDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D8E514F5-4DF9-489B-AD88-1DC7DB1B3FDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B313D82-FDA8-4ADC-9A2D-0DD57BD1D4DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B313D82-FDA8-4ADC-9A2D-0DD57BD1D4DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B313D82-FDA8-4ADC-9A2D-0DD57BD1D4DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B313D82-FDA8-4ADC-9A2D-0DD57BD1D4DA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
