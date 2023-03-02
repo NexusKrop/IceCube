@@ -22,11 +22,7 @@ using System.Collections.Generic;
 /// </summary>
 public static class TypeExtensions
 {
-#if NET6_0_OR_GREATER
-    private static readonly IReadOnlySet<Type> Primitives = new HashSet<Type>
-#else
-    private static readonly Type[] Primitives = new Type[]
-#endif
+    private static readonly HashSet<Type> Primitives = new()
     {
         typeof(int),
         typeof(float),

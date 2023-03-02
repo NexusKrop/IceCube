@@ -1,8 +1,4 @@
-﻿#if NET7_0_OR_GREATER
-#define BIG_ENDIAN
-#endif
-
-// Copyright (C) 2023 NexusKrop & contributors
+﻿// Copyright (C) 2023 NexusKrop & contributors
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -26,6 +22,7 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using NexusKrop.IceCube.Data.Values;
+using NexusKrop.IceCube.Exceptions;
 using NexusKrop.IceCube.IO;
 
 /// <summary>
@@ -84,32 +81,6 @@ public class KeyValueContainer
     };
 
     private readonly Dictionary<string, object> _keyValuePair = new();
-
-#if BIG_ENDIAN
-    /// <summary>
-    /// Gets or sets a value indicating whether to write in a big-endian format.
-    /// </summary>
-    /// <remarks>
-    /// The runtime target that this version of IceCube built for supports Big Endian. You can set this property to control if <see cref="WriteToFile(Stream)"/> and <see cref="WriteToFileAsync(Stream)"/> methods
-    /// writes the container KVC format in Big Endian.
-    /// </remarks>
-    /// <value>
-    /// <see langword="true"/> if this container will be written in Big Endian KVC; otherwise, <see langword="false" />.
-    /// </value>
-    public bool BigEndian { get; set; }
-#else
-    /// <summary>
-    /// Gets a value indicating whether to write in a big-endian format.
-    /// </summary>
-    /// <remarks>
-    /// The runtime target that this version of IceCube built for does not support Big Endian, and thus, this
-    /// property is not muttable (settable) and will always be <see langword="false"/>.
-    /// </remarks>
-    /// <value>
-    /// Always <see langword="false" />.
-    /// </value>
-    public bool BigEndian { get; } = false;
-#endif
 
     /// <summary>
     /// Gets the contents of this dictionary.
@@ -172,24 +143,12 @@ public class KeyValueContainer
     internal void WriteHeader(IBinaryWriter writer)
     {
         // Magic number
-        // 0x3C 'K' 'V' 'C'
+        // 0x3C 0x3F
         writer.Write((byte)0x3C);
-        writer.Write('K');
-        writer.Write('V');
-        writer.Write('C');
+        writer.Write((byte)0x3F);
 
         // Data version
         writer.Write(DataVersion);
-
-        // Endianness indicator
-        // For targets do not support BIG_ENDIAN this is simply a false
-        // otherwise write if this is created as BigEndian
-#if BIG_ENDIAN
-        writer.Write(BigEndian);
-#else
-        writer.Write(false);
-#endif
-
         writer.Write(_keyValuePair.Count);
     }
 
@@ -214,20 +173,7 @@ public class KeyValueContainer
     {
         using var stream = target;
 
-        IBinaryWriter writer;
-
-#if BIG_ENDIAN
-        if (BigEndian)
-        {
-            writer = new BigEndianBinaryWriter(stream);
-        }
-        else
-        {
-#endif
-            writer = new NBinaryWriter(stream);
-#if BIG_ENDIAN
-        }
-#endif
+        IBinaryWriter writer = new NBinaryWriter(target);
 
         WriteHeader(writer);
 
@@ -244,7 +190,7 @@ public class KeyValueContainer
             Debug.Assert(type.FullName != null);
 
             writer.Write(x.Key);
-            writer.Write(type.FullName);
+            writer.Write(type.FullName!);
             io.Write(writer, x.Value);
         });
 
@@ -263,22 +209,25 @@ public class KeyValueContainer
     /// <param name="file"></param>
     public void WriteToFile(string file) => WriteToFileAsync(file).Wait();
 
-    private static void VerifyMagic(IBinaryReader input, out bool bigEndian)
+    private static void VerifyMagic(IBinaryReader input)
     {
         using var reader = input;
 
         // Validate the magic bytes.
-        var magic = reader.ReadByte();
-        var chA = reader.ReadChar();
-        var chB = reader.ReadChar();
-        var chC = reader.ReadChar();
+        var magicA = reader.ReadByte();
+        var magicB = reader.ReadByte();
 
-        if (magic != 0x3C || chA == 'K' || chB == 'V' || chC == 'C')
+        if (magicA != 0x3C || magicB != 0x3F)
         {
             throw new InvalidDataException("The file is not a KVC file.");
         }
 
-        bigEndian = reader.ReadBoolean();
+        var version = reader.ReadInt32();
+
+        if (version != DataVersion)
+        {
+            throw new InvalidDataException($"KVC Data version is incorrect. Excepted {DataVersion} but got version {version}");
+        }
     }
 
     /// <summary>
@@ -290,22 +239,11 @@ public class KeyValueContainer
     /// <exception cref="InvalidDataException">The provided data is invalid.</exception>
     public static KeyValueContainer ReadFromFile(Stream stream, bool leaveOpen = false)
     {
-        VerifyMagic(new NBinaryReader(stream, Encoding.UTF8, true), out var bigEndian);
-
-#if !BIG_ENDIAN
-        if (bigEndian)
-        {
-            throw new NotSupportedException(ExceptionHelperResources.RuntimeNoBigEndian);
-        }
-#endif
+        VerifyMagic(new NBinaryReader(stream, Encoding.UTF8, true));
 
         var result = new KeyValueContainer();
 
-#if BIG_ENDIAN
-        IBinaryReader rd = bigEndian ? new BigEndianBinaryReader(stream, leaveOpen) : new NBinaryReader(stream, Encoding.UTF8, leaveOpen);
-#else
-        IBinaryReader rd = new NBinaryReader();
-#endif
+        IBinaryReader rd = new NBinaryReader(stream);
 
         var amount = rd.ReadInt32();
 
