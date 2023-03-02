@@ -15,21 +15,26 @@ using System.Threading.Tasks;
 /// </summary>
 public class BigEndianBinaryWriter : BinaryWriter
 {
+    /// <inheritdoc/>
     public BigEndianBinaryWriter(Stream output) : base(output)
     {
     }
+    /// <inheritdoc/>
 
     public BigEndianBinaryWriter(Stream output, Encoding encoding) : base(output, encoding)
     {
     }
+    /// <inheritdoc/>
 
     public BigEndianBinaryWriter(Stream output, Encoding encoding, bool leaveOpen) : base(output, encoding, leaveOpen)
     {
     }
+    /// <inheritdoc/>
 
     protected BigEndianBinaryWriter()
     {
     }
+    /// <inheritdoc/>
 
     public override void Write(double value)
     {
@@ -37,6 +42,7 @@ public class BigEndianBinaryWriter : BinaryWriter
         BinaryPrimitives.WriteDoubleBigEndian(buffer, value);
         OutStream.Write(buffer);
     }
+    /// <inheritdoc/>
 
     public override void Write(short value)
     {
@@ -44,6 +50,7 @@ public class BigEndianBinaryWriter : BinaryWriter
         BinaryPrimitives.WriteInt16BigEndian(buffer, value);
         OutStream.Write(buffer);
     }
+    /// <inheritdoc/>
 
     public override void Write(ushort value)
     {
@@ -51,6 +58,7 @@ public class BigEndianBinaryWriter : BinaryWriter
         BinaryPrimitives.WriteUInt16BigEndian(buffer, value);
         OutStream.Write(buffer);
     }
+    /// <inheritdoc/>
 
     public override void Write(int value)
     {
@@ -58,6 +66,7 @@ public class BigEndianBinaryWriter : BinaryWriter
         BinaryPrimitives.WriteInt32BigEndian(buffer, value);
         OutStream.Write(buffer);
     }
+    /// <inheritdoc/>
 
     public override void Write(uint value)
     {
@@ -65,12 +74,14 @@ public class BigEndianBinaryWriter : BinaryWriter
         BinaryPrimitives.WriteUInt32BigEndian(buffer, value);
         OutStream.Write(buffer);
     }
+    /// <inheritdoc/>
     public override void Write(long value)
     {
         Span<byte> buffer = stackalloc byte[sizeof(long)];
         BinaryPrimitives.WriteInt64BigEndian(buffer, value);
         OutStream.Write(buffer);
     }
+    /// <inheritdoc/>
 
     public override void Write(ulong value)
     {
@@ -78,6 +89,7 @@ public class BigEndianBinaryWriter : BinaryWriter
         BinaryPrimitives.WriteUInt64BigEndian(buffer, value);
         OutStream.Write(buffer);
     }
+    /// <inheritdoc/>
 
     public override void Write(float value)
     {
@@ -85,6 +97,7 @@ public class BigEndianBinaryWriter : BinaryWriter
         BinaryPrimitives.WriteSingleBigEndian(buffer, value);
         OutStream.Write(buffer);
     }
+    /// <inheritdoc/>
 
     public override void Write(Half value)
     {
@@ -92,6 +105,7 @@ public class BigEndianBinaryWriter : BinaryWriter
         BinaryPrimitives.WriteHalfBigEndian(buffer, value);
         OutStream.Write(buffer);
     }
+    /// <inheritdoc/>
 
     public override void Write(string value)
     {

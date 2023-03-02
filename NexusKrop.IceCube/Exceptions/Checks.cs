@@ -46,8 +46,17 @@ public static class Checks
         return process;
     }
 
+    /// <summary>
+    /// Throws <see cref="ArgumentNullException"/> if the specified <paramref name="value"/> is <see langword="null"/>.
+    /// </summary>
+    /// <typeparam name="T">The type to check.</typeparam>
+    /// <param name="value">The value to check.</param>
+    /// <param name="argName">The name of the argument.</param>
+    /// <returns>The value.</returns>
+    /// <exception cref="ArgumentNullException"></exception>
+
 #if NET6_0_OR_GREATER
-    public static T ArgNotNull<T>(T value, [CallerArgumentExpression("value")] string argName = "???")
+    public static T ArgNotNull<T>(T value, [CallerArgumentExpression(nameof(value))] string argName = "???")
 #else
     public static T ArgNotNull<T>(T value, string argName)
 #endif
@@ -57,8 +66,17 @@ public static class Checks
         return value;
     }
 
+    /// <summary>
+    /// Throws <see cref="ArgumentException"/> if the <paramref name="value"/> is consisted sole of whitespaces,
+    /// or <see cref="ArgumentNullException"/> if the <paramref name="value"/> is <see langword="null"/>.
+    /// </summary>
+    /// <param name="value">The value to check.</param>
+    /// <param name="argName">The name of the argument.</param>
+    /// <exception cref="ArgumentNullException"></exception>
+    /// <exception cref="ArgumentException"></exception>
+
 #if NET6_0_OR_GREATER
-    public static void ArgNotNullOrWhitespace(string? value, [CallerArgumentExpression("value")] string? argName = "???")
+    public static void ArgNotNullOrWhitespace(string? value, [CallerArgumentExpression(nameof(value))] string? argName = "???")
 #else
     public static void ArgNotNullOrWhitespace(string value, string argName)
 #endif

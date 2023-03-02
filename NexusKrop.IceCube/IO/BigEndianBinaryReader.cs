@@ -18,10 +18,12 @@ using System.Threading.Tasks;
 public class BigEndianBinaryReader : BinaryReader
 {
     private readonly byte[] _buffer;
+/// <inheritdoc/>
 
     public BigEndianBinaryReader(Stream input) : this(input, Encoding.UTF8, false)
     {
     }
+/// <inheritdoc/>
 
     public BigEndianBinaryReader(Stream input, bool leaveOpen) : this(input, Encoding.UTF8, leaveOpen)
     {
@@ -46,16 +48,26 @@ public class BigEndianBinaryReader : BinaryReader
 
         return _buffer;
     }
+/// <inheritdoc/>
 
     public override short ReadInt16() => BinaryPrimitives.ReadInt16BigEndian(InternalRead(2));
+    /// <inheritdoc/>
     public override ushort ReadUInt16() => BinaryPrimitives.ReadUInt16BigEndian(InternalRead(2));
+    /// <inheritdoc/>
     public override int ReadInt32() => BinaryPrimitives.ReadInt32BigEndian(InternalRead(4));
+    /// <inheritdoc/>
     public override uint ReadUInt32() => BinaryPrimitives.ReadUInt32BigEndian(InternalRead(4));
+    /// <inheritdoc/>
     public override long ReadInt64() => BinaryPrimitives.ReadInt64BigEndian(InternalRead(8));
+    /// <inheritdoc/>
     public override ulong ReadUInt64() => BinaryPrimitives.ReadUInt64BigEndian(InternalRead(8));
+    /// <inheritdoc/>
     public override Half ReadHalf() => BinaryPrimitives.ReadHalfBigEndian(InternalRead(2));
+    /// <inheritdoc/>
     public override float ReadSingle() => BinaryPrimitives.ReadSingleBigEndian(InternalRead(4));
+    /// <inheritdoc/>
     public override double ReadDouble() => BinaryPrimitives.ReadDoubleBigEndian(InternalRead(8));
+/// <inheritdoc/>
 
     public override string ReadString()
     {

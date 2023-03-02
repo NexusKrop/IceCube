@@ -24,6 +24,7 @@
     <VersionSuffix>alpha</VersionSuffix>
     <PackageProjectUrl>https://codeberg.org/NexusKrop/IceCube</PackageProjectUrl>
     <RepositoryUrl>https://codeberg.org/NexusKrop/IceCube.git</RepositoryUrl>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

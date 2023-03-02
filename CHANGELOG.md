@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Added `TypeExtensions` class
+- Added `IsPrimitive` extension method for types to check if the type is primitive
+- Added IntelliSense documentation file (`XML` Documentation) to build output and NuGet package
+
 ### Changed
 
 - Allow Mono on GNU/Linux to use the `ProcessExtensions.EndGracefully()` extension method.
