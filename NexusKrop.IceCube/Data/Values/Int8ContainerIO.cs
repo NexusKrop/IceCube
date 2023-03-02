@@ -20,12 +20,12 @@ using System;
 
 internal class Int8ContainerIO : IContainerValueIO
 {
-    public ValueType Read(IBinaryReader reader)
+    public object Read(IBinaryReader reader)
     {
         return reader.ReadSByte();
     }
 
-    public void Write(IBinaryWriter writer, ValueType o)
+    public void Write(IBinaryWriter writer, object o)
     {
         if (o is not sbyte b)
         {

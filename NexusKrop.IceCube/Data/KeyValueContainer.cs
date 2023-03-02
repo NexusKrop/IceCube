@@ -18,17 +18,15 @@
 
 namespace NexusKrop.IceCube.Data;
 
-using NexusKrop.IceCube.Data.Values;
-using NexusKrop.IceCube.Exceptions;
-using NexusKrop.IceCube.IO;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NexusKrop.IceCube.Data.Values;
+using NexusKrop.IceCube.IO;
 
 /// <summary>
 /// Provides a key-to-value container that stores primitive types and utilties to store the container
@@ -45,7 +43,7 @@ public class KeyValueContainer
 #endif
     {
 #if !BIG_ENDIAN
-        Contents = new ReadOnlyDictionary<string, ValueType>(_keyValuePair);
+        Contents = new ReadOnlyDictionary<string, object>(_keyValuePair);
 #endif
     }
 
@@ -57,7 +55,7 @@ public class KeyValueContainer
     public KeyValueContainer(bool bigEndian)
     {
         BigEndian = bigEndian;
-        Contents = new ReadOnlyDictionary<string, ValueType>(_keyValuePair);
+        Contents = new ReadOnlyDictionary<string, object>(_keyValuePair);
     }
 #endif
 
@@ -70,37 +68,97 @@ public class KeyValueContainer
     {
         { typeof(byte), new UInt8ContainerIO() },
         { typeof(short), new Int16ContainerIO() },
+        { typeof(ushort), new UInt16ContainerIO() },
+        { typeof(int), new Int32ContainerIO() },
+        { typeof(uint), new UInt32ContainerIO() },
+        { typeof(long), new Int64ContainerIO() },
+        { typeof(ulong), new UInt64ContainerIO() },
+        { typeof(float), new SingleContainerIO() },
+        { typeof(double), new DoubleContainerIO() },
+        { typeof(string), new StringContainerIO() },
+        { typeof(bool), new BooleanContainerIO() },
+
+#if NET7_0_OR_GREATER
+        { typeof(sbyte), new Int8ContainerIO() }
+#endif
     };
 
-    private readonly Dictionary<string, ValueType> _keyValuePair = new();
+    private readonly Dictionary<string, object> _keyValuePair = new();
 
 #if BIG_ENDIAN
     /// <summary>
     /// Gets or sets a value indicating whether to write in a big-endian format.
     /// </summary>
+    /// <remarks>
+    /// The runtime target that this version of IceCube built for supports Big Endian. You can set this property to control if <see cref="WriteToFile(Stream)"/> and <see cref="WriteToFileAsync(Stream)"/> methods
+    /// writes the container KVC format in Big Endian.
+    /// </remarks>
+    /// <value>
+    /// <see langword="true"/> if this container will be written in Big Endian KVC; otherwise, <see langword="false" />.
+    /// </value>
     public bool BigEndian { get; set; }
+#else
+    /// <summary>
+    /// Gets a value indicating whether to write in a big-endian format.
+    /// </summary>
+    /// <remarks>
+    /// The runtime target that this version of IceCube built for does not support Big Endian, and thus, this
+    /// property is not muttable (settable) and will always be <see langword="false"/>.
+    /// </remarks>
+    /// <value>
+    /// Always <see langword="false" />.
+    /// </value>
+    public bool BigEndian { get; } = false;
 #endif
 
     /// <summary>
     /// Gets the contents of this dictionary.
     /// </summary>
-    public IReadOnlyDictionary<string, ValueType> Contents { get; }
+    public IReadOnlyDictionary<string, object> Contents { get; }
 
     /// <summary>
-    /// Adds the specified key-value pair to this container.
+    /// Gets or sets the value associated with the specified key.
+    /// </summary>
+    /// <param name="key">The key.</param>
+    /// <returns>The value.</returns>
+    public object this[string key]
+    {
+        get => _keyValuePair[key];
+        set => Put(key, value);
+    }
+
+    /// <summary>
+    /// Puts the specified key-value pair into this container.
     /// </summary>
     /// <param name="key">The key.</param>
     /// <param name="value">The value.</param>
     /// <exception cref="ArgumentException"><paramref name="value"/> is not in a primitive type.</exception>
-    public void Add(string key, ValueType value)
+    public void Put(string key, object value)
     {
         if (!ValueIO.ContainsKey(value.GetType()))
         {
-            throw new ArgumentException("The type provided is not primitive!", nameof(value));
+            throw new ArgumentException("The value provided is not in a primitive type.", nameof(value));
+        }
+
+        _keyValuePair[key] = value;
+    }
+
+    /// <summary>
+    /// Postpends the specified key-value pair to the end of this container.
+    /// </summary>
+    /// <param name="key">The key.</param>
+    /// <param name="value">The value.</param>
+    /// <exception cref="ArgumentException"><paramref name="value"/> is not in a primitive type.</exception>
+    public void Add(string key, object value)
+    {
+        if (!ValueIO.ContainsKey(value.GetType()))
+        {
+            throw new ArgumentException("The value provided is not in a primitive type.", nameof(value));
         }
 
         _keyValuePair.Add(key, value);
     }
+
 
     /// <summary>
     /// Removes the key-value pair from this container.
@@ -254,16 +312,16 @@ public class KeyValueContainer
         for (int i = 0; i < amount; i++)
         {
             var name = rd.ReadString();
-            var type = rd.ReadString();
+            var typeName = rd.ReadString();
 
-            var actualType = Type.GetType(type);
+            var type = Type.GetType(typeName);
 
-            if (actualType == null || !ValueIO.ContainsKey(actualType))
+            if (type == null || !ValueIO.ContainsKey(type))
             {
-                throw new InvalidDataException($"Invalid data type {type} for pair {name}.");
+                throw new InvalidDataException($"Invalid data type {typeName} for pair {name}.");
             }
 
-            var value = ValueIO[actualType].Read(rd);
+            var value = ValueIO[type].Read(rd);
 
             result.Add(name, value);
         }

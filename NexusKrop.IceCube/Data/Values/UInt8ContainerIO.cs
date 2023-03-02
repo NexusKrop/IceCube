@@ -19,12 +19,12 @@ using System;
 
 internal class UInt8ContainerIO : IContainerValueIO
 {
-    public ValueType Read(IBinaryReader reader)
+    public object Read(IBinaryReader reader)
     {
         return reader.ReadByte();
     }
 
-    public void Write(IBinaryWriter writer, ValueType o)
+    public void Write(IBinaryWriter writer, object o)
     {
         if (o is not byte b)
         {

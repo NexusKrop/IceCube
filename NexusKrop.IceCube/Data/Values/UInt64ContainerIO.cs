@@ -17,18 +17,18 @@ namespace NexusKrop.IceCube.Data.Values;
 using NexusKrop.IceCube.IO;
 using System;
 
-internal class Int16ContainerIO : IContainerValueIO
+internal class UInt64ContainerIO : IContainerValueIO
 {
     public object Read(IBinaryReader reader)
     {
-        return reader.ReadInt16();
+        return reader.ReadUInt64();
     }
 
     public void Write(IBinaryWriter writer, object o)
     {
-        if (o is not short b)
+        if (o is not ulong b)
         {
-            throw new ArgumentException("Not UInt8", nameof(o));
+            throw new ArgumentException("Not UInt64", nameof(o));
         }
 
         writer.Write(b);

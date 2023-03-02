@@ -23,13 +23,7 @@ using System.Threading.Tasks;
 
 internal interface IContainerValueIO
 {
-    public ValueType Read(IBinaryReader reader)
-    {
-        throw new NotImplementedException();
-    }
+    object Read(IBinaryReader reader);
 
-    public void Write(IBinaryWriter writer, ValueType o)
-    {
-        throw new NotImplementedException();
-    }
+    void Write(IBinaryWriter writer, object o);
 }
