@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Allow Mono on GNU/Linux to use the `ProcessExtensions.EndGracefully()` extension method.
 - Further improve NuGet package metadata.
 - Changed the icon of the NuGet package to the new logo.
 
