@@ -14,9 +14,9 @@
 
 namespace NexusKrop.IceCube;
 
-using NexusKrop.IceCube.Exceptions;
 using System;
 using System.Collections.Generic;
+using NexusKrop.IceCube.Exceptions;
 
 /// <summary>
 /// Provides extension methods for collections.

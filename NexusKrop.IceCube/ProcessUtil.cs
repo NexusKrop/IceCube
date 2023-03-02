@@ -14,10 +14,10 @@
 
 namespace NexusKrop.IceCube;
 
-using NexusKrop.IceCube.Exceptions;
 using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using NexusKrop.IceCube.Exceptions;
 using NexusKrop.IceCube.Interop;
 
 #if NET6_0_OR_GREATER

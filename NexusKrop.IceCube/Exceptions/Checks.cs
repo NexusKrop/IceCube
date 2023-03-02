@@ -13,6 +13,7 @@
 // limitations under the License.
 
 namespace NexusKrop.IceCube.Exceptions;
+
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -35,7 +36,7 @@ public static class Checks
     /// <exception cref="ArgumentNullException"></exception>
     /// <exception cref="ArgumentException"></exception>
 #if NET6_0_OR_GREATER
-    public static Process ProcessRunning(Process process, [CallerArgumentExpression("process")] string argName = "???")
+    public static Process ProcessRunning(Process process, [CallerArgumentExpression(nameof(process))] string argName = "???")
 #else
     public static Process ProcessRunning(Process process, string argName)
 #endif
