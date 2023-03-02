@@ -117,19 +117,28 @@ public static class Checks
         }
     }
 
-#if NET6_0_OR_GREATER
+
     /// <summary>
-    /// Throws <see cref="NotSupportedException"/> if the current platform is not Microsoft Windows.
+    /// Throws <see cref="PlatformNotSupportedException"/> if the current platform is not Microsoft Windows.
     /// </summary>
     public static void OnWindows()
     {
+#if NET6_0_OR_GREATER
         if (!OperatingSystem.IsWindows())
         {
-            throw new NotSupportedException(string.Format(ExceptionHelperResources.PlatformRequired,
+            throw new PlatformNotSupportedException(string.Format(ExceptionHelperResources.PlatformRequired,
                 "windows"));
         }
+#else
+        if (Environment.OSVersion.Platform != PlatformID.Win32NT)
+        {
+            throw new PlatformNotSupportedException(string.Format(ExceptionHelperResources.PlatformRequired,
+                "Win32NT"));
+        }
+#endif
     }
 
+#if NET6_0_OR_GREATER
     /// <summary>
     /// Throws <see cref="NotSupportedException"/> if the current platform is not Microsoft Windows
     /// with version at least specified in <paramref name="major"/>.

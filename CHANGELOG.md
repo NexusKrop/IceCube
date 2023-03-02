@@ -15,11 +15,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Allow Mono on GNU/Linux to use the `ProcessExtensions.EndGracefully()` extension method.
+- The following methods can now be used on .NET Framework and Mono:
+    - `ProcessExtensions.EndGracefully()`
+    - `Checks.OnWindows()`
 - Further improve NuGet package metadata.
 - Changed the icon of the NuGet package to the new logo.
+- `BigEndianBinaryWriter` no longer available for .NET 6 target
 
-## [0.1.4-alpha] - 2023/2/1
+## [0.1.4-alpha] - 2023/3/1
 
 ### Changed
 
