@@ -14,10 +14,12 @@
 
 namespace NexusKrop.IceCube.IO;
 
+using System;
+
 /// <summary>
 /// Defines a reader that reads primitive types from any data flow.
 /// </summary>
-public interface IBinaryReader
+public interface IBinaryReader : IDisposable
 {
     /// <summary>
     /// Reads a byte.
@@ -91,4 +93,16 @@ public interface IBinaryReader
     /// </summary>
     /// <returns>The result.</returns>
     double ReadDouble();
+
+    /// <summary>
+    /// Reads a character.
+    /// </summary>
+    /// <returns>The result.</returns>
+    char ReadChar();
+
+    /// <summary>
+    /// Reads a boolean value.
+    /// </summary>
+    /// <returns>The result.</returns>
+    bool ReadBoolean();
 }

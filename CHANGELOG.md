@@ -12,7 +12,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added `TypeExtensions` class
 - Added `IsPrimitive` extension method for types to check if the type is primitive
 - Added IntelliSense documentation file (`XML` Documentation) to build output and NuGet package
-
+- Added `IBinaryWriter` and `IBinaryReader` interfaces to represent generic Binary writing and reading
+- Added wrappers for `BinaryWriter` and `BinaryReader` (N-prefixed) that implements `IBinaryWriter` and `IBinaryReader` respectively
 ### Changed
 
 - The following methods can now be used on .NET Framework and Mono:
@@ -21,6 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Further improve NuGet package metadata.
 - Changed the icon of the NuGet package to the new logo.
 - `BigEndianBinaryWriter` no longer available for .NET 6 target
+- Made `BigEndianBinaryWriter` and `BigEndianBinaryReader` implement `IBinaryWriter` and `IBinaryReader` respectively
 
 ## [0.1.4-alpha] - 2023/3/1
 
