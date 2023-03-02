@@ -20,6 +20,10 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using NexusKrop.IceCube.Interop;
 
+#if NET6_0_OR_GREATER
+using System.Runtime.Versioning;
+#endif
+
 /// <summary>
 /// Provides utilities regarding processes.
 /// </summary>
@@ -82,7 +86,11 @@ public static class ProcessUtil
     /// <exception cref="UnauthorizedAccessException">The caller does not have permission to end the specified process.</exception>
     public static void EndGracefully(this Process process)
     {
+#if NET6_0_OR_GREATER
+        var proc = Checks.ArgNotNull(process);
+#else
         var proc = Checks.ArgNotNull(process, nameof(process));
+#endif
 
         if (proc.HasExited)
         {
