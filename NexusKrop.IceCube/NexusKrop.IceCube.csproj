@@ -8,7 +8,7 @@
     <Authors>WithLithum</Authors>
     <Description>Common code for NexusKrop projects</Description>
     <Copyright>(C) NexusKrop &amp; contributors 2023</Copyright>
-    <PackageIcon>IceQube_128x.png</PackageIcon>
+    <PackageIcon>IceCubeNew_128.png</PackageIcon>
     <LangVersion>latest</LangVersion>
 
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
@@ -17,22 +17,24 @@
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+
     <!-- Package Version -->
     <VersionPrefix>0.1.4</VersionPrefix>
     <VersionSuffix>alpha</VersionSuffix>
-    <PackageProjectUrl>https://github.com/NexusKrop/IceCube</PackageProjectUrl>
+    <PackageProjectUrl>https://codeberg.org/NexusKrop/IceCube</PackageProjectUrl>
     <RepositoryUrl>https://codeberg.org/NexusKrop/IceCube.git</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include=".\IceQube_128x.png">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
+    <EditorConfigFiles Remove=".editorconfig" />
   </ItemGroup>
 
   <ItemGroup>
-    <EditorConfigFiles Remove=".editorconfig" />
+    <None Include=".\IceCubeNew_128.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
