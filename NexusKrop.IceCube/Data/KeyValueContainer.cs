@@ -31,26 +31,9 @@ public partial class KeyValueContainer
     /// Initializes a new instance of the <see cref="KeyValueContainer"/> class, in a Little Endian format.
     /// </summary>
     public KeyValueContainer()
-#if BIG_ENDIAN
-        : this(false)
-#endif
     {
-#if !BIG_ENDIAN
-        Contents = new ReadOnlyDictionary<string, object>(_keyValuePair);
-#endif
-    }
-
-#if BIG_ENDIAN
-    /// <summary>
-    /// Initializes a new instance of the <see cref="KeyValueContainer" /> class.
-    /// </summary>
-    /// <param name="bigEndian">If <paramref name="bigEndian"/>, this instance is read and written in Big Endian.</param>
-    public KeyValueContainer(bool bigEndian)
-    {
-        BigEndian = bigEndian;
         Contents = new ReadOnlyDictionary<string, object>(_keyValuePair);
     }
-#endif
 
     private static readonly Dictionary<Type, IContainerValueIO> ValueIO = new()
     {
