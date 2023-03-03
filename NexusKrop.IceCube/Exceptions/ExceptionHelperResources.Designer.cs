@@ -115,6 +115,15 @@ namespace NexusKrop.IceCube.Exceptions {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The file specified requires Big Endian formatting but it is not supported by the current runtime..
+        /// </summary>
+        internal static string RuntimeNoBigEndian {
+            get {
+                return ResourceManager.GetString("RuntimeNoBigEndian", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The specified string is empty or consisted of only whitespaces..
         /// </summary>
         internal static string StringWhitespace {

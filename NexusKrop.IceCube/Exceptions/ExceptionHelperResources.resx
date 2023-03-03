@@ -135,6 +135,9 @@
   <data name="ProcessExited" xml:space="preserve">
     <value>The specified process has exited.</value>
   </data>
+  <data name="RuntimeNoBigEndian" xml:space="preserve">
+    <value>The file specified requires Big Endian formatting but it is not supported by the current runtime.</value>
+  </data>
   <data name="StringWhitespace" xml:space="preserve">
     <value>The specified string is empty or consisted of only whitespaces.</value>
   </data>

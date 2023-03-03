@@ -25,7 +25,7 @@ using System.Text;
 /// Writes primitive types in binary to a stream, in Big Endian format, and supports writing strings in
 /// UTF-8 encoding.
 /// </summary>
-public class BigEndianBinaryWriter : BinaryWriter
+public sealed class BigEndianBinaryWriter : BinaryWriter, IBinaryWriter
 {
     /// <inheritdoc/>
     public BigEndianBinaryWriter(Stream output) : base(output)

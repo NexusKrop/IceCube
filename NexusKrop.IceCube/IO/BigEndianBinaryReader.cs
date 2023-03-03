@@ -25,7 +25,7 @@ using System.Text;
 /// <summary>
 /// Read primitive data types as values in Big Endian, and strings in UTF-8.
 /// </summary>
-public class BigEndianBinaryReader : BinaryReader
+public sealed class BigEndianBinaryReader : BinaryReader, IBinaryReader
 {
     private readonly byte[] _buffer;
     /// <inheritdoc/>
