@@ -9,11 +9,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Added Key-to-Value Container that can be formatted as binary, and stores primitive data
+- Added annotation attribute `ApiStatus` to indicate the status of an API
 - Added `TypeExtensions` class
 - Added `IsPrimitive` extension method for types to check if the type is primitive
 - Added IntelliSense documentation file (`XML` Documentation) to build output and NuGet package
 - Added `IBinaryWriter` and `IBinaryReader` interfaces to represent generic Binary writing and reading
-- Added wrappers for `BinaryWriter` and `BinaryReader` (N-prefixed) that implements `IBinaryWriter` and `IBinaryReader` respectively
+- Added wrappers for `BinaryWriter` and `BinaryReader` (N-prefixed) that implements `IBinaryWriter` and `IBinaryReader` respectively 
+
 ### Changed
 
 - The following methods can now be used on .NET Framework and Mono:

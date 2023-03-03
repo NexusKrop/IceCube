@@ -17,17 +17,14 @@ namespace NexusKrop.IceCube.Data;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.IO;
-using System.Text;
-using System.Threading.Tasks;
+using NexusKrop.IceCube.Annotations;
 using NexusKrop.IceCube.Data.Values;
-using NexusKrop.IceCube.IO;
 
 /// <summary>
 /// Provides a key-to-value container that stores primitive types and utilties to store the container
 /// in a binary format, as well as reading a binary-formatted container.
 /// </summary>
+[ApiStatus(ApiStatus.Unstable)]
 public partial class KeyValueContainer
 {
     /// <summary>
