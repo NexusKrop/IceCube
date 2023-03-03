@@ -20,7 +20,7 @@
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
 
     <!-- Package Version -->
-    <VersionPrefix>0.1.4</VersionPrefix>
+    <VersionPrefix>0.2.0</VersionPrefix>
     <VersionSuffix>alpha</VersionSuffix>
     <PackageProjectUrl>https://codeberg.org/NexusKrop/IceCube</PackageProjectUrl>
     <RepositoryUrl>https://codeberg.org/NexusKrop/IceCube.git</RepositoryUrl>
