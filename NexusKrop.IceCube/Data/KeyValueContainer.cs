@@ -22,7 +22,6 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using NexusKrop.IceCube.Data.Values;
-using NexusKrop.IceCube.Exceptions;
 using NexusKrop.IceCube.IO;
 
 /// <summary>
@@ -190,7 +189,7 @@ public class KeyValueContainer
             Debug.Assert(type.FullName != null);
 
             writer.Write(x.Key);
-            writer.Write(type.FullName!);
+            writer.Write((byte)KvcTypeService.KvcTypeValues[type]);
             io.Write(writer, x.Value);
         });
 
@@ -250,13 +249,13 @@ public class KeyValueContainer
         for (int i = 0; i < amount; i++)
         {
             var name = rd.ReadString();
-            var typeName = rd.ReadString();
+            var typeId = rd.ReadByte();
 
-            var type = Type.GetType(typeName);
+            var type = KvcTypeService.KvcValueTypes[(KvcValueType)typeId];
 
             if (type == null || !ValueIO.ContainsKey(type))
             {
-                throw new InvalidDataException($"Invalid data type {typeName} for pair {name}.");
+                throw new InvalidDataException($"Invalid data type {type} for pair {name}.");
             }
 
             var value = ValueIO[type].Read(rd);
