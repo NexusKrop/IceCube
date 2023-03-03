@@ -28,7 +28,7 @@ using NexusKrop.IceCube.IO;
 /// Provides a key-to-value container that stores primitive types and utilties to store the container
 /// in a binary format, as well as reading a binary-formatted container.
 /// </summary>
-public class KeyValueContainer
+public partial class KeyValueContainer
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="KeyValueContainer"/> class, in a Little Endian format.
@@ -54,11 +54,6 @@ public class KeyValueContainer
         Contents = new ReadOnlyDictionary<string, object>(_keyValuePair);
     }
 #endif
-
-    /// <summary>
-    /// The data version of the key-value containers.
-    /// </summary>
-    public const int DataVersion = 1;
 
     private static readonly Dictionary<Type, IContainerValueIO> ValueIO = new()
     {
@@ -137,132 +132,5 @@ public class KeyValueContainer
     public void Remove(string key)
     {
         _keyValuePair.Remove(key);
-    }
-
-    internal void WriteHeader(IBinaryWriter writer)
-    {
-        // Magic number
-        // 0x3C 0x3F
-        writer.Write((byte)0x3C);
-        writer.Write((byte)0x3F);
-
-        // Data version
-        writer.Write(DataVersion);
-        writer.Write(_keyValuePair.Count);
-    }
-
-    /// <summary>
-    /// Asynchronously writes this container, in a file format, to the specified file.
-    /// </summary>
-    /// <param name="file"></param>
-    /// <returns></returns>
-    public async Task WriteToFileAsync(string file)
-    {
-        var stream = File.Create(file);
-
-        using var target = stream;
-        await WriteToFileAsync(target);
-    }
-
-    /// <summary>
-    /// Writes this container, in a file format, to the specified stream. This call is not async, but can be awaited.
-    /// </summary>
-    /// <param name="target">The target.</param>
-    public Task WriteToFileAsync(Stream target)
-    {
-        using var stream = target;
-
-        IBinaryWriter writer = new NBinaryWriter(target);
-
-        WriteHeader(writer);
-
-        // For each item:
-        // The key
-        // The full name of the type
-        // The value
-        _keyValuePair.Iterate(x =>
-        {
-            var type = x.Value.GetType();
-            var io = ValueIO[type];
-
-            // This should only be null if it is auto-generated
-            Debug.Assert(type.FullName != null);
-
-            writer.Write(x.Key);
-            writer.Write((byte)KvcTypeService.KvcTypeValues[type]);
-            io.Write(writer, x.Value);
-        });
-
-        return Task.CompletedTask;
-    }
-
-    /// <summary>
-    /// Writes this container, in a file format, to the specified stream.
-    /// </summary>
-    /// <param name="target"></param>
-    public void WriteToFile(Stream target) => WriteToFileAsync(target).Wait();
-
-    /// <summary>
-    /// Writes this container, in a file format, to the specified stream.
-    /// </summary>
-    /// <param name="file"></param>
-    public void WriteToFile(string file) => WriteToFileAsync(file).Wait();
-
-    private static void VerifyMagic(IBinaryReader input)
-    {
-        using var reader = input;
-
-        // Validate the magic bytes.
-        var magicA = reader.ReadByte();
-        var magicB = reader.ReadByte();
-
-        if (magicA != 0x3C || magicB != 0x3F)
-        {
-            throw new InvalidDataException("The file is not a KVC file.");
-        }
-
-        var version = reader.ReadInt32();
-
-        if (version != DataVersion)
-        {
-            throw new InvalidDataException($"KVC Data version is incorrect. Excepted {DataVersion} but got version {version}");
-        }
-    }
-
-    /// <summary>
-    /// Parses a file-format KVC data.
-    /// </summary>
-    /// <param name="stream">The stream to parse.</param>
-    /// <param name="leaveOpen">Whether or not to leave the stream open.</param>
-    /// <returns>The parsed KVC data.</returns>
-    /// <exception cref="InvalidDataException">The provided data is invalid.</exception>
-    public static KeyValueContainer ReadFromFile(Stream stream, bool leaveOpen = false)
-    {
-        VerifyMagic(new NBinaryReader(stream, Encoding.UTF8, true));
-
-        var result = new KeyValueContainer();
-
-        IBinaryReader rd = new NBinaryReader(stream);
-
-        var amount = rd.ReadInt32();
-
-        for (int i = 0; i < amount; i++)
-        {
-            var name = rd.ReadString();
-            var typeId = rd.ReadByte();
-
-            var type = KvcTypeService.KvcValueTypes[(KvcValueType)typeId];
-
-            if (type == null || !ValueIO.ContainsKey(type))
-            {
-                throw new InvalidDataException($"Invalid data type {type} for pair {name}.");
-            }
-
-            var value = ValueIO[type].Read(rd);
-
-            result.Add(name, value);
-        }
-
-        return result;
     }
 }

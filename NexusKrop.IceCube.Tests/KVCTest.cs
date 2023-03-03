@@ -1,11 +1,6 @@
 ﻿namespace NexusKrop.IceCube.Tests;
 
 using NexusKrop.IceCube.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices.Marshalling;
-using System.Text;
 using System.Threading.Tasks;
 
 public class KVCTest
@@ -29,7 +24,35 @@ public class KVCTest
     }
 
     [Test]
-    public void KVC_BinaryFormatTest()
+    public async Task KVC_RawFormatTest()
+    {
+        byte[] buffer;
+
+        KeyValueContainer readed;
+
+        using (var mem = new MemoryStream())
+        {
+            await SampleContainer.WriteRawAsync(mem);
+            buffer = mem.ToArray();
+        }
+
+        using (var mem2 = new MemoryStream(buffer))
+        {
+            readed = await KeyValueContainer.ReadRawAsync(mem2);
+        }
+
+        foreach (var value in readed.Contents)
+        {
+            Assert.Multiple(() =>
+            {
+                Assert.That(SampleContainer.Contents.ContainsKey(value.Key), Is.True);
+                Assert.That(value.Value, Is.EqualTo(SampleContainer[value.Key]));
+            });
+        }
+    }
+
+    [Test]
+    public async Task KVC_FileFormatTest()
     {
         byte[] buffer;
 
@@ -43,7 +66,7 @@ public class KVCTest
 
         using (var mem2 = new MemoryStream(buffer))
         {
-            readed = KeyValueContainer.ReadFromFile(mem2);
+            readed = await KeyValueContainer.ReadFromFile(mem2);
         }
 
         foreach (var value in readed.Contents)
