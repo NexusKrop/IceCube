@@ -7,7 +7,8 @@ A library of reusable code for all kinds of .NET projects.
 - Exception throwing utilities
 - Binary-formatted Key-to-primitive-value dictionary
 - Big Endian binary support
-- 
+- Exception throwing utilities
+- Process utilities such as ending a process gracefully
 
 ## Installation
 
