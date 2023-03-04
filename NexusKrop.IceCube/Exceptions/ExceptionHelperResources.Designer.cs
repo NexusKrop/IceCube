@@ -88,6 +88,15 @@ namespace NexusKrop.IceCube.Exceptions {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Plaftorm &quot;{0}&quot; is not supported..
+        /// </summary>
+        internal static string PlatformNotSupported {
+            get {
+                return ResourceManager.GetString("PlatformNotSupported", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Only platform &quot;{0}&quot; is supported..
         /// </summary>
         internal static string PlatformRequired {

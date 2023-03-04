@@ -126,6 +126,9 @@
   <data name="FileNotFound" xml:space="preserve">
     <value>File or part of path "{0}" not found.</value>
   </data>
+  <data name="PlatformNotSupported" xml:space="preserve">
+    <value>Plaftorm "{0}" is not supported.</value>
+  </data>
   <data name="PlatformRequired" xml:space="preserve">
     <value>Only platform "{0}" is supported.</value>
   </data>

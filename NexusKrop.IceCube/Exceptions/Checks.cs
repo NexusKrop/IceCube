@@ -22,7 +22,7 @@ using System.Runtime.CompilerServices;
 #endif
 
 /// <summary>
-/// Provides methods to check and assert certain conditions.
+/// Provides methods to enforce certain conditions.
 /// </summary>
 public static class Checks
 {
@@ -98,8 +98,7 @@ public static class Checks
     {
         if (!File.Exists(fileName))
         {
-            throw new FileNotFoundException(string.Format(ExceptionHelperResources.FileNotFound,
-                fileName), fileName);
+            throw Throws.FileNotFound(fileName);
         }
     }
 
@@ -126,44 +125,42 @@ public static class Checks
 #if NET6_0_OR_GREATER
         if (!OperatingSystem.IsWindows())
         {
-            throw new PlatformNotSupportedException(string.Format(ExceptionHelperResources.PlatformRequired,
-                "windows"));
+            throw Throws.ExceptedPlatform("windows");
         }
 #else
         if (Environment.OSVersion.Platform != PlatformID.Win32NT)
         {
-            throw new PlatformNotSupportedException(string.Format(ExceptionHelperResources.PlatformRequired,
-                "Win32NT"));
+            throw Throws.ExceptedPlatform(PlatformID.Win32NT);
         }
 #endif
     }
 
 #if NET6_0_OR_GREATER
     /// <summary>
-    /// Throws <see cref="NotSupportedException"/> if the current platform is not Microsoft Windows
+    /// Throws <see cref="PlatformNotSupportedException"/> if the current platform is not Microsoft Windows
     /// with version at least specified in <paramref name="major"/>.
     /// </summary>
     /// <param name="major">The version.</param>
-    /// <exception cref="NotSupportedException">The current platform is not Microsoft Windows, or the version is below the required.</exception>
+    /// <exception cref="PlatformNotSupportedException">The current platform is not Microsoft Windows, or the version is below the required.</exception>
     public static void OnWindows(int major)
     {
+        OnWindows();
+
         if (!OperatingSystem.IsWindowsVersionAtLeast(major))
         {
-            throw new NotSupportedException(string.Format(ExceptionHelperResources.PlatformVersionRequired,
-                "windows", major));
+            throw Throws.ExceptedPlatform("windows", major);
         }
     }
 
     /// <summary>
-    /// Throws <see cref="NotSupportedException"/> if the current platform is not GNU/Linux or any other
+    /// Throws <see cref="PlatformNotSupportedException"/> if the current platform is not GNU/Linux or any other
     /// Linux that is supported by .NET.
     /// </summary>
     public static void OnLinux()
     {
         if (!OperatingSystem.IsLinux())
         {
-            throw new NotSupportedException(string.Format(ExceptionHelperResources.PlatformRequired,
-                "linux"));
+            throw Throws.ExceptedPlatform("linux");
         }
     }
 #endif

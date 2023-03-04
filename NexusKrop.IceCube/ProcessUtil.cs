@@ -48,7 +48,7 @@ public static class ProcessUtil
     /// <returns>The process, or <see langword="null"/> if no process were created.</returns>
     /// <seealso cref="Process"/>
     /// <seealso cref="ProcessStartInfo"/>
-    /// <seealso cref="Process.Start"/>
+    /// <seealso cref="Process.Start()"/>
     public static Process? ShellExecute(string name)
     {
         return Process.Start(new ProcessStartInfo(name)
@@ -68,7 +68,7 @@ public static class ProcessUtil
     /// On GNU/Linux (or any similar platform, such as GNU/Hurd or a BSD with GNU C Library), <c>SIGTERM</c> is sent. This signal instructs the target
     /// process to gracefully end itself, which means the process can do clean up, save its work, etc. before shutting down. However,
     /// if a process is not responding, or encountered deadlock, the program would not be able to respond to the signal and thus does not exit. In this
-    /// case, use <see cref="Process.Kill"/>. If such process does not implement <c>SIGTERM</c> handling, the call will terminate the process regardless.
+    /// case, use <see cref="Process.Kill()"/>. If such process does not implement <c>SIGTERM</c> handling, the call will terminate the process regardless.
     /// </para>
     /// <para>
     /// <c>SIGTERM</c> may be intercepted and thus be ignored by a process implementing its handlers.
@@ -84,6 +84,10 @@ public static class ProcessUtil
     /// <exception cref="ArgumentException">The <paramref name="process"/> specified is invalid.</exception>
     /// <exception cref="PlatformNotSupportedException">The current operating system is not GNU/Linux (or similar), nor Microsoft Windows.</exception>
     /// <exception cref="UnauthorizedAccessException">The caller does not have permission to end the specified process.</exception>
+#if NET6_0_OR_GREATER
+    [SupportedOSPlatform("windows")]
+    [SupportedOSPlatform("linux")]
+#endif
     public static void EndGracefully(this Process process)
     {
 #if NET6_0_OR_GREATER
@@ -110,13 +114,19 @@ public static class ProcessUtil
             throw new PlatformNotSupportedException("You are not running on GNU/Linux (or similar), or Microsoft Windows.");
         }
 #else
-        if (Environment.OSVersion.Platform == PlatformID.Win32NT)
+        var platform = Environment.OSVersion.Platform;
+
+        if (platform == PlatformID.Win32NT)
         {
             process.CloseMainWindow();
         }
-        else if (Environment.OSVersion.Platform == PlatformID.Unix)
+        else if (platform == PlatformID.Unix)
         {
             EndGracefullyLinuxInternal(process);
+        }
+        else
+        {
+            throw Throws.PlatformNotSupported(platform);
         }
 #endif
     }
