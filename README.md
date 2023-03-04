@@ -1,7 +1,13 @@
 # IceCube
 
-The IceCube project contains common code used by various C# NexusKrop projects,
-across different platforms.
+A library of reusable code for all kinds of .NET projects.
+
+## Features
+
+- Exception throwing utilities
+- Binary-formatted Key-to-primitive-value dictionary
+- Big Endian binary support
+- 
 
 ## Installation
 

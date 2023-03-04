@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Added new Iterate functions which are for-based, and provides index, plus allowing modification of the collection during operation
+- Added new `Throws` class to create exception instances for throwing
+
+### Changed
+
+- Renamed old Iterate functions to `ForEach`
+- Deprecated old Iterate functions (they are now wrappers to ForEach).
+- Made `Checks` functions to make use of `Throws` instead of creating one directly
+
 ## [0.2.0-alpha] - 2023/3/3
 
 ### Added

@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
     <Company>NexusKrop</Company>
     <Authors>WithLithum</Authors>
-    <Description>Common code for NexusKrop projects</Description>
+    <Description>Reusable code for all kinds of .NET projects</Description>
     <Copyright>(C) NexusKrop &amp; contributors 2023</Copyright>
     <PackageIcon>IceCubeNew_128.png</PackageIcon>
     <LangVersion>latest</LangVersion>

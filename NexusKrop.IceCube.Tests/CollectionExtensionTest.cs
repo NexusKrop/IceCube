@@ -8,6 +8,68 @@ public class CollectionExtensionTest
     [Test]
     public void Iterate_Action()
     {
+        var indicesIterated = 0;
+        var actualIterated = 0;
+
+        var collection = new List<string>()
+        {
+            "a",
+            "b",
+            "c",
+            "d",
+            "e"
+        };
+
+        collection.Iterate((x, i) =>
+        {
+            indicesIterated = i;
+            actualIterated++;
+        });
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(indicesIterated, Is.EqualTo(4));
+            Assert.That(actualIterated, Is.EqualTo(5));
+        });
+    }
+
+    [Test]
+    public void Iterate_Func()
+    {
+        var incides = 0;
+        var actualIterated = 0;
+
+        var collection = new List<string>()
+        {
+            "a",
+            "b",
+            "cancel",
+            "d",
+            "e"
+        };
+
+        collection.Iterate((x, i) =>
+        {
+            if (x == "cancel")
+            {
+                return false;
+            }
+
+            incides = i;
+            actualIterated++;
+            return true;
+        });
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(incides, Is.EqualTo(1));
+            Assert.That(actualIterated, Is.EqualTo(2));
+        });
+    }
+
+    [Test]
+    public void ForEach_Action()
+    {
         var iterated = 0;
 
         var collection = new List<string>()
@@ -19,7 +81,7 @@ public class CollectionExtensionTest
             "e"
         };
 
-        collection.Iterate(x =>
+        collection.ForEach(x =>
         {
             iterated++;
         });
@@ -28,7 +90,7 @@ public class CollectionExtensionTest
     }
 
     [Test]
-    public void Iterate_Func()
+    public void ForEach_Func()
     {
         var iterated = 0;
 
@@ -42,7 +104,7 @@ public class CollectionExtensionTest
             "e"
         };
 
-        collection.Iterate(x =>
+        collection.ForEach(x =>
         {
             iterated++;
 
