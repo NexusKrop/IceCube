@@ -22,8 +22,19 @@ using System.Runtime.InteropServices;
 #if NET6_0_OR_GREATER
 [SupportedOSPlatform("linux")]
 #endif
-internal static class LibC
+internal static partial class LibC
 {
+#if NET7_0_OR_GREATER
+    [LibraryImport("libc.so.6", SetLastError = true)]
+    internal static partial int kill(int pid, int signum);
+
+    [LibraryImport("libc.so.6", SetLastError = true)]
+    internal static partial int system([MarshalAs(UnmanagedType.LPWStr)] string? command);
+#else
     [DllImport("libc.so.6", SetLastError = true)]
     internal static extern int kill(int pid, int signum);
+
+    [DllImport("libc.so.6", SetLastError = true)]
+    internal static extern int system([MarshalAs(UnmanagedType.LPWStr)] string? command);
+#endif
 }

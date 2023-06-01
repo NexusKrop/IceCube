@@ -25,6 +25,7 @@
     <PackageProjectUrl>https://codeberg.org/NexusKrop/IceCube</PackageProjectUrl>
     <RepositoryUrl>https://codeberg.org/NexusKrop/IceCube.git</RepositoryUrl>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
 
   <ItemGroup>

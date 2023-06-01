@@ -22,6 +22,7 @@ using NexusKrop.IceCube.Interop;
 
 #if NET6_0_OR_GREATER
 using System.Runtime.Versioning;
+using NexusKrop.IceCube.Util;
 #endif
 
 /// <summary>
@@ -49,12 +50,10 @@ public static class ProcessUtil
     /// <seealso cref="Process"/>
     /// <seealso cref="ProcessStartInfo"/>
     /// <seealso cref="Process.Start()"/>
+    [Obsolete("Use Shell.ShellExecute()")]
     public static Process? ShellExecute(string name)
     {
-        return Process.Start(new ProcessStartInfo(name)
-        {
-            UseShellExecute = true
-        });
+        return Shell.ShellExecute(name);
     }
 
     /// <summary>
