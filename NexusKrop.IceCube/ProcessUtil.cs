@@ -19,10 +19,10 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using NexusKrop.IceCube.Exceptions;
 using NexusKrop.IceCube.Interop;
+using NexusKrop.IceCube.Util;
 
 #if NET6_0_OR_GREATER
 using System.Runtime.Versioning;
-using NexusKrop.IceCube.Util;
 #endif
 
 /// <summary>
