@@ -11,6 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentat
 		CONTRIBUTING.md = CONTRIBUTING.md
 		LICENSE.txt = LICENSE.txt
 		README.md = README.md
+		THIRDPARTY.txt = THIRDPARTY.txt
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NexusKrop.IceCube.Tests", "NexusKrop.IceCube.Tests\NexusKrop.IceCube.Tests.csproj", "{0B313D82-FDA8-4ADC-9A2D-0DD57BD1D4DA}"
