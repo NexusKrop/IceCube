@@ -7,16 +7,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+This is a major release that adds new utility methods and changed existing API definitions.
+Please be noted that there are multiple breaking changes in this version.
+
 ### Added
 
 - Added new Iterate functions which are for-based, and provides index, plus allowing modification of the collection during operation
 - Added new `Throws` class to create exception instances for throwing
+- Added new `Shell` class for interaction with the command-line or GUI shell
+    - Added `Shell.System` and `Shell.IsAvailable`
+- Added `ByteExtensions` class to operate bits in a byte
+- Added new `UrlPath` class with URL processing utilities
+- Added `IterationFunc` and `IterationAction` as delegates for iteration
 
 ### Changed
 
-- Renamed old Iterate functions to `ForEach`
+- Renamed old `foreach`-based Iterate functions to `ForEach`
 - Deprecated old Iterate functions (they are now wrappers to ForEach).
 - Made `Checks` functions to make use of `Throws` instead of creating one directly
+- Move `ProcessUtil.ShellExecute` to `Shell.ShellExecute`
+
+### Fixed
+
+- Fixed a build failure in `ProcessUtil`
 
 ## [0.2.0-alpha] - 2023/3/3
 
@@ -42,7 +55,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.1.4-alpha] - 2023/3/1
 
-### Changed
+### Fixed
 
 - Fixed SourceLink.
 
