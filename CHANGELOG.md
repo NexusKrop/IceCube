@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.0-alpha] - 2023/6/16
+
 This is a major release that adds new utility methods and changed existing API definitions.
 Please be noted that there are multiple breaking changes in this version.
 
@@ -101,7 +103,8 @@ Please be noted that there are multiple breaking changes in this version.
 
 - Initial release.
 
-[Unreleased]: https://codeberg.org/NexusKrop/IceCube/compare/v0.2.0-alpha...HEAD
+[Unreleased]: https://codeberg.org/NexusKrop/IceCube/compare/v0.3.0-alpha...HEAD
+[0.3.0-alpha]: https://codeberg.org/NexusKrop/IceCube/compare/v0.2.0-alpha...v0.3.0-alpha
 [0.2.0-alpha]: https://codeberg.org/NexusKrop/IceCube/compare/v0.1.4-alpha...v0.2.0-alpha
 [0.1.4-alpha]: https://codeberg.org/NexusKrop/IceCube/compare/v0.1.3-alpha...v0.1.4-alpha
 [0.1.3-alpha]: https://codeberg.org/NexusKrop/IceCube/compare/v0.1.2-alpha...v0.1.3-alpha

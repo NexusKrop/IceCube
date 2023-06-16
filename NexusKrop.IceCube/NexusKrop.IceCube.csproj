@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
     <Company>NexusKrop</Company>
     <Authors>WithLithum</Authors>
-    <Description>Reusable code for all kinds of .NET projects</Description>
+    <Description>Commonly used and reusable code for .NET projects</Description>
     <Copyright>(C) NexusKrop &amp; contributors 2023</Copyright>
     <PackageIcon>IceCubeNew_128.png</PackageIcon>
     <LangVersion>latest</LangVersion>
@@ -20,7 +20,7 @@
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
 
     <!-- Package Version -->
-    <VersionPrefix>0.2.0</VersionPrefix>
+    <VersionPrefix>0.3.0</VersionPrefix>
     <VersionSuffix>alpha</VersionSuffix>
     <PackageProjectUrl>https://codeberg.org/NexusKrop/IceCube</PackageProjectUrl>
     <RepositoryUrl>https://codeberg.org/NexusKrop/IceCube.git</RepositoryUrl>
