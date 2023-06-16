@@ -2,6 +2,8 @@
 
 A library of reusable code for all kinds of .NET projects.
 
+This library is designed to have no dependencies other than the .NET itself.
+
 ## Features
 
 - Exception throwing utilities
@@ -9,15 +11,19 @@ A library of reusable code for all kinds of .NET projects.
 - Big Endian binary support
 - Exception throwing utilities
 - Process utilities such as ending a process gracefully
+- Many more...
 
 ## Installation
 
 ### NuGet
 
 This is the recommended method.
-Newer version can be found in the Packages page (if theres none means we have not yet released one).
 
-This is a package currently only for internal usage but it will be released on `nuget.org` whenever any other package requires it.
+- with .NET CLI: `dotnet add package NexusKrop.IceCube`
+- with VS GUI: Search `NexusKrop.IceCube` with "Include prerelease" option ticked.
+- with VS Package Manager Console: `NuGet\Install-Package NexusKrop.IceCube`
+
+See [the NuGet.org page](https://www.nuget.org/packages/NexusKrop.IceCube) for latest version and more installation methods.
 
 ### Building from Source
 
