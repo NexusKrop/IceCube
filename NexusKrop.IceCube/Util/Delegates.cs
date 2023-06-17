@@ -13,32 +13,18 @@
 // limitations under the License.
 
 namespace NexusKrop.IceCube.Util;
-using System.Text;
+using System;
 
 /// <summary>
-/// Provide utilities to manipulate URL paths.
+/// Provides methods for assisting the creation of delegates.
 /// </summary>
-public static class UrlPath
+public static class Delegates
 {
     /// <summary>
-    /// Combines two or more URL paths to a single URL path.
+    /// Creates a <see cref="Func{TResult}"/> with no parameters that always returns the specified <paramref name="value"/>.
     /// </summary>
-    /// <param name="parts">The parts of the URL path to combine.</param>
-    /// <returns>The combined result.</returns>
-    public static string Combine(params string[] parts)
-    {
-        var builder = new StringBuilder();
-
-        foreach (var part in parts)
-        {
-            builder.Append(part);
-
-            if (!part.EndsWith("/"))
-            {
-                builder.Append('/');
-            }
-        }
-
-        return builder.ToString();
-    }
+    /// <typeparam name="T">The type of value.</typeparam>
+    /// <param name="value">The value to return.</param>
+    /// <returns>A a <see cref="Func{TResult}"/> with no parameters that always returns the specified <paramref name="value"/></returns>
+    public static Func<T> Of<T>(T value) => () => value;
 }
