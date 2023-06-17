@@ -26,6 +26,8 @@
     <RepositoryUrl>https://codeberg.org/NexusKrop/IceCube.git</RepositoryUrl>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageTags>IceCube</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
@@ -33,6 +35,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
     <None Include=".\IceCubeNew_128.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
