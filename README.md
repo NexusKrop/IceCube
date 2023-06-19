@@ -1,5 +1,8 @@
 # IceCube
 
+[![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/NexusKrop.IceCube?style=flat-square&logo=nuget
+)](https://www.nuget.org/packages/NexusKrop.IceCube/)
+
 IceCube is a library written to simpify some of the boilerplate
 codes, and makes your life easier by providing utility methods to help you
 create commonly created collections, as well as providing API sugars to simpify
