@@ -53,6 +53,7 @@ Commit messages are in this format:
 - `collection`: Collections and collection related extension classes.
 - `process`: Process related extension classes.
 - `math`: [`MathUtil`](NexusKrop.IceCube/MathUtil.cs) class, and related files
+- `vb`: Visual Basic wrapper modules and codes
 - `misc`: Any other
 
 If you want a new scope for a new major feature, just ask.

@@ -1,12 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <RootNamespace>NexusKrop.IceCube.VisualBasic</RootNamespace>
+
     <TargetFrameworks>net7;net6;net48;netstandard20</TargetFrameworks>
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <Company>NexusKrop</Company>
     <Authors>WithLithum</Authors>
-    <Description>Commonly used and reusable code for .NET projects</Description>
+    <Description>Reusable shared modules for Visual Basic projects</Description>
     <Copyright>(C) NexusKrop &amp; contributors 2023</Copyright>
     <PackageIcon>IceCubeNew_128.png</PackageIcon>
     <LangVersion>latest</LangVersion>
@@ -31,39 +33,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <EditorConfigFiles Remove=".editorconfig" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="..\README.md">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
-    <None Include=".\IceCubeNew_128.png">
+    <None Include="..\NexusKrop.IceCube\IceCubeNew_128.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.SourceLink.Gitea" Version="1.1.1">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
+    <ProjectReference Include="..\NexusKrop.IceCube\NexusKrop.IceCube.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Compile Update="Exceptions\ExceptionHelperResources.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>ExceptionHelperResources.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Update="Exceptions\ExceptionHelperResources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>ExceptionHelperResources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
 </Project>

@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Added Visual Basic wrapper modules as a seperate package
+- Added `Dictionary.Of` and `List.Of` creation helpers that works similar to `Arrays.Of` but for lists and dictionaries
+
+### Changed
+
+- Renamed `Arrays.From` to `Arrays.Of` and deprecated the old one
+
 ## [0.3.0-alpha] - 2023/6/16
 
 This is a major release that adds new utility methods and changed existing API definitions.
