@@ -5,7 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+All dates are in UTC+8 unless otherwise specified.
+
 ## [Unreleased]
+
+## [0.3.1-alpha] - 2023/6/19
 
 ### Added
 
@@ -112,7 +116,8 @@ Please be noted that there are multiple breaking changes in this version.
 
 - Initial release.
 
-[Unreleased]: https://codeberg.org/NexusKrop/IceCube/compare/v0.3.0-alpha...HEAD
+[Unreleased]: https://codeberg.org/NexusKrop/IceCube/compare/v0.3.1-alpha...HEAD
+[0.3.1-alpha]: https://codeberg.org/NexusKrop/IceCube/compare/v0.3.0-alpha...v0.3.1-alpha
 [0.3.0-alpha]: https://codeberg.org/NexusKrop/IceCube/compare/v0.2.0-alpha...v0.3.0-alpha
 [0.2.0-alpha]: https://codeberg.org/NexusKrop/IceCube/compare/v0.1.4-alpha...v0.2.0-alpha
 [0.1.4-alpha]: https://codeberg.org/NexusKrop/IceCube/compare/v0.1.3-alpha...v0.1.4-alpha
