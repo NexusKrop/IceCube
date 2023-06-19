@@ -1,16 +1,21 @@
 # IceCube
 
-A library of reusable code for all kinds of .NET projects.
+IceCube is a library written to simpify some of the boilerplate
+codes, and makes your life easier by providing utility methods to help you
+create commonly created collections, as well as providing API sugars to simpify
+some API usages.
 
-This library is designed to have no dependencies other than the .NET itself.
+This library compiles natively to most .NET frameworks, and also compiles to
+.NET Standard library to support more .NET frameworks.
 
 ## Features
 
 - Exception throwing utilities
+- Simplified creation of some collections (Lists, Dictionaries, etc.)
 - Binary-formatted Key-to-primitive-value dictionary
 - Big Endian binary support
 - Exception throwing utilities
-- Process utilities such as ending a process gracefully
+- Process utilities such as ending a process gracefully and `ShellExecute`
 - Many more...
 
 ## Installation
