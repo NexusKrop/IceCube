@@ -20,7 +20,7 @@
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
 
     <!-- Package Version -->
-    <VersionPrefix>0.3.1</VersionPrefix>
+    <VersionPrefix>0.3.2</VersionPrefix>
     <VersionSuffix>alpha</VersionSuffix>
     <PackageProjectUrl>https://gitea.com/NexusKrop/IceCube</PackageProjectUrl>
     <RepositoryUrl>https://gitea.com/NexusKrop/IceCube.git</RepositoryUrl>
