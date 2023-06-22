@@ -22,8 +22,8 @@
     <!-- Package Version -->
     <VersionPrefix>0.3.1</VersionPrefix>
     <VersionSuffix>alpha</VersionSuffix>
-    <PackageProjectUrl>https://codeberg.org/NexusKrop/IceCube</PackageProjectUrl>
-    <RepositoryUrl>https://codeberg.org/NexusKrop/IceCube.git</RepositoryUrl>
+    <PackageProjectUrl>https://gitea.com/NexusKrop/IceCube</PackageProjectUrl>
+    <RepositoryUrl>https://gitea.com/NexusKrop/IceCube.git</RepositoryUrl>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <PackageReadmeFile>README.md</PackageReadmeFile>

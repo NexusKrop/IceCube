@@ -19,6 +19,7 @@ This library compiles natively to most .NET frameworks, and also compiles to
 - Big Endian binary support
 - Exception throwing utilities
 - Process utilities such as ending a process gracefully and `ShellExecute`
+- String conversion to snake case
 - Many more...
 
 ## Installation

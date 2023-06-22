@@ -9,6 +9,18 @@ All dates are in UTC+8 unless otherwise specified.
 
 ## [Unreleased]
 
+## [0.3.2-alpha] - 2023/6/22
+
+This is a small release that adds one API.
+
+### Added
+
+- Added `string.ToSnakeCase()` extension method that converts strings to snake case
+
+### Changed
+
+- We now have moved to Gitea.com
+
 ## [0.3.1-alpha] - 2023/6/19
 
 ### Added
@@ -116,7 +128,8 @@ Please be noted that there are multiple breaking changes in this version.
 
 - Initial release.
 
-[Unreleased]: https://codeberg.org/NexusKrop/IceCube/compare/v0.3.1-alpha...HEAD
+[Unreleased]: https://codeberg.org/NexusKrop/IceCube/compare/v0.3.2-alpha...HEAD
+[0.3.2-alpha]: https://codeberg.org/NexusKrop/IceCube/compare/v0.3.1-alpha...v0.3.2-alpha
 [0.3.1-alpha]: https://codeberg.org/NexusKrop/IceCube/compare/v0.3.0-alpha...v0.3.1-alpha
 [0.3.0-alpha]: https://codeberg.org/NexusKrop/IceCube/compare/v0.2.0-alpha...v0.3.0-alpha
 [0.2.0-alpha]: https://codeberg.org/NexusKrop/IceCube/compare/v0.1.4-alpha...v0.2.0-alpha
