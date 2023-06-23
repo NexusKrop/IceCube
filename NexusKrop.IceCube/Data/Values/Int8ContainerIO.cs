@@ -32,7 +32,7 @@ namespace NexusKrop.IceCube.Data.Values;
 using NexusKrop.IceCube.IO;
 using System;
 
-internal class Int8ContainerIO : IContainerValueProvider
+internal class Int8ContainerIO : IContainerValueIO
 {
     public object Read(IBinaryReader reader)
     {

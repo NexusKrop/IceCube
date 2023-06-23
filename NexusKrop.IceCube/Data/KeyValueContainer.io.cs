@@ -52,7 +52,7 @@ public partial class KeyValueContainer
             _keyValuePair.Iterate(x =>
             {
                 var type = x.Value.GetType();
-                var io = _valueIo[type];
+                var io = ValueIO[type];
 
                 // This should only be null if it is auto-generated
                 Debug.Assert(type.FullName != null);
@@ -114,12 +114,12 @@ public partial class KeyValueContainer
 
                 var type = KvcTypeService.KvcValueTypes[(KvcValueType)typeId];
 
-                if (type == null || !_valueIo.ContainsKey(type))
+                if (type == null || !ValueIO.ContainsKey(type))
                 {
                     throw new InvalidDataException($"Invalid data type {type} for pair {name}.");
                 }
 
-                var value = _valueIo[type].Read(rd);
+                var value = ValueIO[type].Read(rd);
 
                 result.Add(name, value);
             }

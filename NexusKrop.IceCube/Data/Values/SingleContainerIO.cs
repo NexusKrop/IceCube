@@ -17,7 +17,7 @@ namespace NexusKrop.IceCube.Data.Values;
 using NexusKrop.IceCube.IO;
 using System;
 
-internal class SingleContainerIO : IContainerValueProvider
+internal class SingleContainerIO : IContainerValueIO
 {
     public object Read(IBinaryReader reader)
     {
