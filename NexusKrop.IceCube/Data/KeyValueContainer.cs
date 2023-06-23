@@ -35,7 +35,7 @@ public partial class KeyValueContainer
         Contents = new ReadOnlyDictionary<string, object>(_keyValuePair);
     }
 
-    private static readonly Dictionary<Type, IContainerValueIO> ValueIO = new()
+    private readonly Dictionary<Type, IContainerValueProvider> _valueIo = new()
     {
         { typeof(byte), new UInt8ContainerIO() },
         { typeof(short), new Int16ContainerIO() },
@@ -73,6 +73,22 @@ public partial class KeyValueContainer
     }
 
     /// <summary>
+    /// Register the specified value provider for the specified type.
+    /// </summary>
+    /// <param name="type">The type to register for.</param>
+    /// <param name="provider">The provider to register the type.</param>
+    /// <exception cref="ArgumentException">Already existing provider for the specified type.</exception>
+    public void RegisterType(Type type, IContainerValueProvider provider)
+    {
+        if (_valueIo.ContainsKey(type))
+        {
+            throw new ArgumentException("Already existing provider for the specified type", nameof(type));
+        }
+
+        _valueIo.Add(type, provider);
+    }
+
+    /// <summary>
     /// Puts the specified key-value pair into this container.
     /// </summary>
     /// <param name="key">The key.</param>
@@ -80,7 +96,7 @@ public partial class KeyValueContainer
     /// <exception cref="ArgumentException"><paramref name="value"/> is not in a primitive type.</exception>
     public void Put(string key, object value)
     {
-        if (!ValueIO.ContainsKey(value.GetType()))
+        if (!_valueIo.ContainsKey(value.GetType()))
         {
             throw new ArgumentException("The value provided is not in a primitive type.", nameof(value));
         }
@@ -96,7 +112,7 @@ public partial class KeyValueContainer
     /// <exception cref="ArgumentException"><paramref name="value"/> is not in a primitive type.</exception>
     public void Add(string key, object value)
     {
-        if (!ValueIO.ContainsKey(value.GetType()))
+        if (!_valueIo.ContainsKey(value.GetType()))
         {
             throw new ArgumentException("The value provided is not in a primitive type.", nameof(value));
         }

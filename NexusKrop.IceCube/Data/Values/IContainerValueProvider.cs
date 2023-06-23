@@ -16,9 +16,22 @@ namespace NexusKrop.IceCube.Data.Values;
 
 using NexusKrop.IceCube.IO;
 
-internal interface IContainerValueIO
+/// <summary>
+/// Provides an interface to write and read a certain type to container IO.
+/// </summary>
+public interface IContainerValueProvider
 {
+    /// <summary>
+    /// Retrieves value from the specified reader.
+    /// </summary>
+    /// <param name="reader">The reader to retrieve value from.</param>
+    /// <returns>The value retrieved.</returns>
     object Read(IBinaryReader reader);
 
+    /// <summary>
+    /// Writes the value to the specified writer.
+    /// </summary>
+    /// <param name="writer">The writer to write value to.</param>
+    /// <param name="o">The object to write.</param>
     void Write(IBinaryWriter writer, object o);
 }
