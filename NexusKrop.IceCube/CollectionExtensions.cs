@@ -240,4 +240,23 @@ public static class CollectionExtensions
             }
         }
     }
+
+    /// <summary>
+    /// Reverses the keys and values in this instance.
+    /// </summary>
+    /// <typeparam name="TKey">The original key (new value) of the dictionary.</typeparam>
+    /// <typeparam name="TValue">The original value (new key) of the dictionary.</typeparam>
+    /// <param name="dictionary">The dictionary.</param>
+    /// <returns>The reversed dictionary.</returns>
+    public static IDictionary<TValue, TKey> Invert<TKey, TValue>(this IDictionary<TKey, TValue> dictionary)
+    {
+        var dict = new Dictionary<TValue, TKey>(dictionary.Count);
+
+        foreach (var pair in dictionary)
+        {
+            dict.Add(pair.Value, pair.Key);
+        }
+
+        return dict;
+    }
 }
