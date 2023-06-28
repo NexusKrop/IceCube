@@ -12,23 +12,23 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-namespace NexusKrop.IceCube.Data.Values;
+namespace NexusKrop.IceCube.Data.Container.Values;
 
 using NexusKrop.IceCube.IO;
 using System;
 
-internal class BooleanContainerIO : IContainerValueIO
+internal class Int32ContainerIO : IContainerValueIO
 {
     public object Read(IBinaryReader reader)
     {
-        return reader.ReadBoolean();
+        return reader.ReadInt32();
     }
 
     public void Write(IBinaryWriter writer, object o)
     {
-        if (o is not bool b)
+        if (o is not int b)
         {
-            throw new ArgumentException("Not Boolean", nameof(o));
+            throw new ArgumentException("Not Int32", nameof(o));
         }
 
         writer.Write(b);

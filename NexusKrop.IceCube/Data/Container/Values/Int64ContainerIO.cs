@@ -12,23 +12,23 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-namespace NexusKrop.IceCube.Data.Values;
+namespace NexusKrop.IceCube.Data.Container.Values;
 
 using NexusKrop.IceCube.IO;
 using System;
 
-internal class DoubleContainerIO : IContainerValueIO
+internal class Int64ContainerIO : IContainerValueIO
 {
     public object Read(IBinaryReader reader)
     {
-        return reader.ReadDouble();
+        return reader.ReadInt64();
     }
 
     public void Write(IBinaryWriter writer, object o)
     {
-        if (o is not double b)
+        if (o is not long b)
         {
-            throw new ArgumentException("Not Double", nameof(o));
+            throw new ArgumentException("Not Int64", nameof(o));
         }
 
         writer.Write(b);

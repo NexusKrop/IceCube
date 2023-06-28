@@ -12,13 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-namespace NexusKrop.IceCube.Data;
+namespace NexusKrop.IceCube.Data.Container;
 
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using NexusKrop.IceCube.Annotations;
-using NexusKrop.IceCube.Data.Values;
+using NexusKrop.IceCube.Data.Container.Values;
 
 /// <summary>
 /// Provides a key-to-value container that stores primitive types and utilties to store the container

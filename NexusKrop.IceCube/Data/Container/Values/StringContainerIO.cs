@@ -12,23 +12,23 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-namespace NexusKrop.IceCube.Data.Values;
+namespace NexusKrop.IceCube.Data.Container.Values;
 
 using NexusKrop.IceCube.IO;
 using System;
 
-internal class UInt8ContainerIO : IContainerValueIO
+internal class StringContainerIO : IContainerValueIO
 {
     public object Read(IBinaryReader reader)
     {
-        return reader.ReadByte();
+        return reader.ReadString();
     }
 
     public void Write(IBinaryWriter writer, object o)
     {
-        if (o is not byte b)
+        if (o is not string b)
         {
-            throw new ArgumentException("Not UInt8", nameof(o));
+            throw new ArgumentException("Not String", nameof(o));
         }
 
         writer.Write(b);

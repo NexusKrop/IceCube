@@ -12,25 +12,25 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-namespace NexusKrop.IceCube.Data.Values;
+namespace NexusKrop.IceCube.Data.Container.Values;
 
 using NexusKrop.IceCube.IO;
 using System;
 
-internal class UInt32ContainerIO : IContainerValueIO
+internal class UInt16ContainerIO : IContainerValueIO
 {
     public object Read(IBinaryReader reader)
     {
-        return reader.ReadUInt32();
+        return reader.ReadUInt16();
     }
 
     public void Write(IBinaryWriter writer, object o)
     {
-        if (o is not uint b)
+        if (o is not ushort value)
         {
-            throw new ArgumentException("Not UInt32", nameof(o));
+            throw new ArgumentException("Value is not UInt16", nameof(o));
         }
 
-        writer.Write(b);
+        writer.Write(value);
     }
 }

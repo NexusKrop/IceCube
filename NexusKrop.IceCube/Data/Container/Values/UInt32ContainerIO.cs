@@ -12,13 +12,25 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-namespace NexusKrop.IceCube.Data.Values;
+namespace NexusKrop.IceCube.Data.Container.Values;
 
 using NexusKrop.IceCube.IO;
+using System;
 
-internal interface IContainerValueIO
+internal class UInt32ContainerIO : IContainerValueIO
 {
-    object Read(IBinaryReader reader);
+    public object Read(IBinaryReader reader)
+    {
+        return reader.ReadUInt32();
+    }
 
-    void Write(IBinaryWriter writer, object o);
+    public void Write(IBinaryWriter writer, object o)
+    {
+        if (o is not uint b)
+        {
+            throw new ArgumentException("Not UInt32", nameof(o));
+        }
+
+        writer.Write(b);
+    }
 }

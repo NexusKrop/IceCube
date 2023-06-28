@@ -14,7 +14,7 @@
 
 namespace NexusKrop.IceCube.Tests;
 
-using NexusKrop.IceCube.Data;
+using NexusKrop.IceCube.Data.Container;
 using System.Threading.Tasks;
 
 public class KVCTest

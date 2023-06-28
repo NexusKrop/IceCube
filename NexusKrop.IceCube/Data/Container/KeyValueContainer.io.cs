@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-namespace NexusKrop.IceCube.Data;
+namespace NexusKrop.IceCube.Data.Container;
 
 using NexusKrop.IceCube.IO;
 using NexusKrop.IceCube.Util.Enumerables;
@@ -50,7 +50,7 @@ public partial class KeyValueContainer
             // The key
             // The full name of the type
             // The value
-            _keyValuePair.Iterate(x =>
+            _keyValuePair.ForEach(x =>
             {
                 var type = x.Value.GetType();
                 var io = ValueIO[type];

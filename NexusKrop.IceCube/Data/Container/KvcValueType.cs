@@ -12,7 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-namespace NexusKrop.IceCube.Data;
+namespace NexusKrop.IceCube.Data.Container;
+
 /// <summary>
 /// Indicates the type of the value stored in a binary-formatted <see cref="KeyValueContainer"/>.
 /// </summary>
