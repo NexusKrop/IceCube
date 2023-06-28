@@ -1,44 +1,13 @@
-﻿// Copyright (C) 2023 NexusKrop & contributors
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//    http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+﻿namespace NexusKrop.IceCube.Util.Enumerables;
 
-namespace NexusKrop.IceCube;
-
+using NexusKrop.IceCube.Exceptions;
 using System;
 using System.Collections.Generic;
-using NexusKrop.IceCube.Exceptions;
 
 /// <summary>
-/// Defines a function that iterates through a list or collection.
+/// Provides extensions to generic types of enumerable.
 /// </summary>
-/// <typeparam name="T">The type of the enumeration to iterate.</typeparam>
-/// <param name="x">The value of the current entry.</param>
-/// <param name="index">The index of the current entry.</param>
-/// <returns><see langword="true"/> if the iteration may continue; otherwise, <see langword="false"/>.</returns>
-public delegate bool IterationFunc<in T>(T x, int index);
-
-/// <summary>
-/// Defines a function that iterates through a list or collection.
-/// </summary>
-/// <typeparam name="T">The type of the enumeration to iterate.</typeparam>
-/// <param name="x">The value of the current entry.</param>
-/// <param name="index">The index of the current entry.</param>
-public delegate void IterationAction<in T>(T x, int index);
-
-/// <summary>
-/// Provides extension methods for collections.
-/// </summary>
-public static class CollectionExtensions
+public static class EnumerableExtensions
 {
     /// <summary>
     /// Determines whether or not the specified <paramref name="enumerable"/> is empty.
@@ -152,34 +121,6 @@ public static class CollectionExtensions
 
     /// <summary>
     /// Executes the specified <paramref name="action"/> to each item of the <paramref name="enumerable"/> via its
-    /// enumerator. This method is deprecated; the <see cref="ForEach{T}(IEnumerable{T}, Action{T})"/> method should be used instead.
-    /// </summary>
-    /// <typeparam name="T">The type of the <paramref name="enumerable"/> to iterate.</typeparam>
-    /// <param name="enumerable">The enumerable to iterate.</param>
-    /// <param name="action">The action for iteration.</param>
-    /// <seealso cref="ForEach{T}(IEnumerable{T}, Action{T})"/>
-    [Obsolete("Use ForEach instead.")]
-    public static void Iterate<T>(this IEnumerable<T> enumerable, Action<T> action)
-    {
-        ForEach(enumerable, action);
-    }
-
-    /// <summary>
-    /// Executes the specified <paramref name="action"/> to each item of the <paramref name="enumerable"/> via its
-    /// enumerator. This method is deprecated; the <see cref="ForEach{T}(IEnumerable{T}, Action{T})"/> method should be used instead.
-    /// </summary>
-    /// <typeparam name="T">The type of the <paramref name="enumerable"/> to iterate.</typeparam>
-    /// <param name="enumerable">The enumerable to iterate.</param>
-    /// <param name="action">The action for iteration. If the action returns <see langword="false"/>, the iteration will break; otherwise, it continues.</param>
-    /// <seealso cref="ForEach{T}(IEnumerable{T}, Func{T, bool})"/>
-    [Obsolete("Use ForEach instead.")]
-    public static void Iterate<T>(this IEnumerable<T> enumerable, Func<T, bool> action)
-    {
-        ForEach(enumerable, action);
-    }
-
-    /// <summary>
-    /// Executes the specified <paramref name="action"/> to each item of the <paramref name="enumerable"/> via its
     /// enumerator.
     /// </summary>
     /// <typeparam name="T">The type of the <paramref name="enumerable"/> to iterate.</typeparam>
@@ -239,24 +180,5 @@ public static class CollectionExtensions
                 break;
             }
         }
-    }
-
-    /// <summary>
-    /// Reverses the keys and values in this instance.
-    /// </summary>
-    /// <typeparam name="TKey">The original key (new value) of the dictionary.</typeparam>
-    /// <typeparam name="TValue">The original value (new key) of the dictionary.</typeparam>
-    /// <param name="dictionary">The dictionary.</param>
-    /// <returns>The reversed dictionary.</returns>
-    public static IDictionary<TValue, TKey> Invert<TKey, TValue>(this IDictionary<TKey, TValue> dictionary)
-    {
-        var dict = new Dictionary<TValue, TKey>(dictionary.Count);
-
-        foreach (var pair in dictionary)
-        {
-            dict.Add(pair.Value, pair.Key);
-        }
-
-        return dict;
     }
 }

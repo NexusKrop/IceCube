@@ -14,6 +14,7 @@
 
 namespace NexusKrop.IceCube.Tests;
 
+using NexusKrop.IceCube.Util.Enumerables;
 using NUnit.Framework;
 using System.Collections.Generic;
 

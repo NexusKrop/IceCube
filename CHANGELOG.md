@@ -9,6 +9,21 @@ All dates are in UTC+8 unless otherwise specified.
 
 ## [Unreleased]
 
+This is a release towards the Beta phase.
+
+### Added
+
+- Added `IDictionary.Invert()` to invert key and values and create a new dictionary
+
+### Changed
+
+- Moved extensions to generic `IEnumerable` to a new type `EnumerableExtensions`
+- Moved `CollectionExtensions` to `Util.Enumerables`
+
+### Removed
+
+- Removed two deprecated `Iterate` methods.
+
 ## [0.3.2-alpha] - 2023/6/22
 
 This is a small release that adds one API.
