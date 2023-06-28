@@ -9,20 +9,28 @@ All dates are in UTC+8 unless otherwise specified.
 
 ## [Unreleased]
 
-This is a release towards the Beta phase.
+_To be 0.4.0-alpha_
+
+This is a release towards the Beta phase, with last-minute breaking changes
+(can't do any breaking changes after Beta phase so have to do it now)
 
 ### Added
 
 - Added `IDictionary.Invert()` to invert key and values and create a new dictionary
+- Added `Fails.ArgumentNull(string)` for argument null exception with a default message
 
 ### Changed
 
 - Moved extensions to generic `IEnumerable` to a new type `EnumerableExtensions`
 - Moved `CollectionExtensions` to `Util.Enumerables`
+- Moved Key-to-Value-Container types to `NexusKrop.IceCube.Data.Containers` namespace
+- Renamed `Throws` to `Fails`
 
 ### Removed
 
-- Removed two deprecated `Iterate` methods.
+- Removed the following deprecated methods:
+  - 2 `foreach` based overloads of `CollectionExtensions.Iterate`
+  - `ProcessUtil.ShellExecute`
 
 ## [0.3.2-alpha] - 2023/6/22
 

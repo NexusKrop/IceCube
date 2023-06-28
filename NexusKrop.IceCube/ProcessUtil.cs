@@ -31,32 +31,6 @@ using System.Runtime.Versioning;
 public static class ProcessUtil
 {
     /// <summary>
-    /// Opens the specified file via through the shell of the user's operating system. This is equivalent to calling <see cref="Process.Start(string)"/> on .NET Framework.
-    /// </summary>
-    /// <param name="name">The name of the file.</param>
-    /// <remarks>
-    /// <note type="warning">
-    /// The user must ensure that they trust the specified file, directory or program they execute, and they are sure that whether or not
-    /// such file is excepted to be an executable. If such file is not an executable while the caller excepts it is without checking, this could result in malicious code being
-    /// executed.
-    /// </note>
-    /// <para>
-    /// On .NET Core, and later, .NET, <see cref="Process.Start(string)"/> no longer defaults <see cref="ProcessStartInfo.UseShellExecute"/> to <see langword="true"/>,
-    /// resulting in user have to create a new <see cref="ProcessStartInfo"/> inline. This method creates it internally, and without the need of inline <see cref="ProcessStartInfo"/>,
-    /// the code could be simpler and more readable. However, the user should only use this if they specifically needs to <c>ShellExecute</c> the specified file.
-    /// </para>
-    /// </remarks>
-    /// <returns>The process, or <see langword="null"/> if no process were created.</returns>
-    /// <seealso cref="Process"/>
-    /// <seealso cref="ProcessStartInfo"/>
-    /// <seealso cref="Process.Start()"/>
-    [Obsolete("Use Shell.ShellExecute()")]
-    public static Process? ShellExecute(string name)
-    {
-        return Shell.ShellExecute(name);
-    }
-
-    /// <summary>
     /// Requests the specified <paramref name="process"/> to shutdown gracefully.
     /// </summary>
     /// <remarks>
