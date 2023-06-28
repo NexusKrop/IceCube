@@ -62,7 +62,7 @@ public static class Checks
     public static T ArgNotNull<T>(T value, string argName)
 #endif
     {
-        if (value == null) throw new ArgumentNullException(argName);
+        if (value == null) throw Fails.ArgumentNull(argName);
 
         return value;
     }
@@ -98,7 +98,7 @@ public static class Checks
     {
         if (!File.Exists(fileName))
         {
-            throw Throws.FileNotFound(fileName);
+            throw Fails.FileNotFound(fileName);
         }
     }
 
@@ -111,8 +111,7 @@ public static class Checks
     {
         if (!Directory.Exists(directoryName))
         {
-            throw new DirectoryNotFoundException(string.Format(ExceptionHelperResources.DirectoryNotFound,
-                directoryName));
+            throw Fails.DirectoryNotFound(directoryName);
         }
     }
 
@@ -125,12 +124,12 @@ public static class Checks
 #if NET6_0_OR_GREATER
         if (!OperatingSystem.IsWindows())
         {
-            throw Throws.ExceptedPlatform("windows");
+            throw Fails.ExceptedPlatform("windows");
         }
 #else
         if (Environment.OSVersion.Platform != PlatformID.Win32NT)
         {
-            throw Throws.ExceptedPlatform(PlatformID.Win32NT);
+            throw Fails.ExceptedPlatform(PlatformID.Win32NT);
         }
 #endif
     }
@@ -148,7 +147,7 @@ public static class Checks
 
         if (!OperatingSystem.IsWindowsVersionAtLeast(major))
         {
-            throw Throws.ExceptedPlatform("windows", major);
+            throw Fails.ExceptedPlatform("windows", major);
         }
     }
 
@@ -160,7 +159,7 @@ public static class Checks
     {
         if (!OperatingSystem.IsLinux())
         {
-            throw Throws.ExceptedPlatform("linux");
+            throw Fails.ExceptedPlatform("linux");
         }
     }
 #endif

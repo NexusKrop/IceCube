@@ -61,6 +61,15 @@ namespace NexusKrop.IceCube.Exceptions {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Argument &quot;{0}&quot; cannot be null..
+        /// </summary>
+        internal static string ArgumentNull {
+            get {
+                return ResourceManager.GetString("ArgumentNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Directory or part of path &quot;{0}&quot; not found..
         /// </summary>
         internal static string DirectoryNotFound {

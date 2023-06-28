@@ -21,7 +21,7 @@ using System.IO;
 /// </summary>
 /// <remarks>
 /// <note type="warning">
-/// One common error when using the methods inside <see cref="Throws"/> class is not throwing the exceptions
+/// One common error when using the methods inside <see cref="Fails"/> class is not throwing the exceptions
 /// that the methods have created. The methods <b>does not</b> throw any exceptions; they just create and returns them.
 /// </note>
 /// <para>
@@ -29,7 +29,7 @@ using System.IO;
 /// the methods in <see cref="Checks"/>.
 /// </para>
 /// </remarks>
-public static class Throws
+public static class Fails
 {
     /// <summary>
     /// Creates a <see cref="DirectoryNotFoundException"/> citing that the specified directory was not found.
@@ -86,9 +86,17 @@ public static class Throws
     }
 
     /// <summary>
-    /// <see cref="PlatformNotSupportedException"/> citing that only the specified <paramref name="platform"/> is supported.
+    /// Creates a <see cref="PlatformNotSupportedException"/> citing that only the specified <paramref name="platform"/> is supported.
     /// </summary>
     /// <param name="platform">The legacy ID of the platform.</param>
     /// <returns>An instance of <see cref="PlatformNotSupportedException"/>.</returns>
     public static PlatformNotSupportedException ExceptedPlatform(PlatformID platform) => ExceptedPlatform(platform.ToString());
+
+    /// <summary>
+    /// Creates an <see cref="ArgumentNullException"/> citing that the specified parameter cannot be null.
+    /// </summary>
+    /// <param name="paramName">The name of the parameter.</param>
+    /// <returns>An instance of <see cref="ArgumentNullException"/>.</returns>
+    public static ArgumentNullException ArgumentNull(string paramName)
+        => new(paramName, string.Format(ExceptionHelperResources.ArgumentNull, paramName));
 }

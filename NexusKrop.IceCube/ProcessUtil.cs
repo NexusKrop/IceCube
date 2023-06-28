@@ -125,7 +125,7 @@ public static class ProcessUtil
         }
         else
         {
-            throw Throws.PlatformNotSupported(platform);
+            throw Fails.PlatformNotSupported(platform);
         }
 #endif
     }
