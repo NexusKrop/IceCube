@@ -2,6 +2,7 @@
 
 [![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/NexusKrop.IceCube?style=flat-square&logo=nuget
 )](https://www.nuget.org/packages/NexusKrop.IceCube/)
+[![IRC badge](https://img.shields.io/badge/chat-via_irc-yellow?style=flat-square)](https://github.com/NexusKrop/.github/blob/main/irc.md)
 
 IceCube is a library written to simpify some of the boilerplate
 codes, and makes your life easier by providing utility methods to help you
