@@ -28,17 +28,14 @@ using System.Runtime.Versioning;
 /// <summary>
 /// Provides utilities regarding processes.
 /// </summary>
-public static class ProcessUtil
+public static class Processes
 {
     /// <summary>
     /// Requests the specified <paramref name="process"/> to shutdown gracefully.
     /// </summary>
     /// <remarks>
-    /// <note type="api">
-    /// This API is only available in .NET 6.0 or later. Other frameworks are not supported.
-    /// </note>
     /// <para>
-    /// On GNU/Linux (or any similar platform, such as GNU/Hurd or a BSD with GNU C Library), <c>SIGTERM</c> is sent. This signal instructs the target
+    /// On GNU/Linux systems (or any other Linux system with a fairly standard C Library), <c>SIGTERM</c> is sent. This signal instructs the target
     /// process to gracefully end itself, which means the process can do clean up, save its work, etc. before shutting down. However,
     /// if a process is not responding, or encountered deadlock, the program would not be able to respond to the signal and thus does not exit. In this
     /// case, use <see cref="Process.Kill()"/>. If such process does not implement <c>SIGTERM</c> handling, the call will terminate the process regardless.
@@ -47,13 +44,14 @@ public static class ProcessUtil
     /// <c>SIGTERM</c> may be intercepted and thus be ignored by a process implementing its handlers.
     /// </para>
     /// <note type="warning">
-    /// Using Mono with GNU/Linux on any archteciture other than x86-based (including x86-64) is not supported.
+    /// This call only supports any architecture other than x86-based (including x86-64) and ARM-based (including <c>aarch</c>-based) may work, but is not
+    /// supported.
     /// </note>
     /// <para>
-    /// On Microsoft Windows, this method serves as a wrapper of <see cref="Process.CloseMainWindow"/>.
+    /// On Microsoft Windows, <c>SIGTERM</c> is not supported; thus, this method serves as a wrapper of <see cref="Process.CloseMainWindow"/>.
     /// </para>
     /// </remarks>
-    /// <param name="process">The process.</param>
+    /// <param name="process">The process to send the signal to.</param>
     /// <exception cref="ArgumentException">The <paramref name="process"/> specified is invalid.</exception>
     /// <exception cref="PlatformNotSupportedException">The current operating system is not GNU/Linux (or similar), nor Microsoft Windows.</exception>
     /// <exception cref="UnauthorizedAccessException">The caller does not have permission to end the specified process.</exception>

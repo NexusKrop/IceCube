@@ -19,7 +19,7 @@ using System;
 /// <summary>
 /// Provides methods to perform certain calculations.
 /// </summary>
-public static class MathUtil
+public static class MathUtility
 {
     /// <summary>
     /// Calculates the remaining precentage (of 100%) of the completed amount of works versus
