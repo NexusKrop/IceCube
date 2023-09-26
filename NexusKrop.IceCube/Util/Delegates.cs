@@ -25,6 +25,6 @@ public static class Delegates
     /// </summary>
     /// <typeparam name="T">The type of value.</typeparam>
     /// <param name="value">The value to return.</param>
-    /// <returns>A a <see cref="Func{TResult}"/> with no parameters that always returns the specified <paramref name="value"/></returns>
+    /// <returns>A a <see cref="Func{TResult}"/> with no parameters that always returns the specified <paramref name="value"/>.</returns>
     public static Func<T> Of<T>(T value) => () => value;
 }

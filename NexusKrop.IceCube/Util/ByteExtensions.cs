@@ -16,9 +16,11 @@ namespace NexusKrop.IceCube.Util;
 using System;
 
 /// <summary>
-/// Provides extensions to <see cref="byte"/>.
+/// Provides methods to manipulate <see cref="byte"/> and other bitwise operations.
 /// </summary>
 /// <seealso href="https://derekwill.com/2015/03/05/bit-processing-in-c/"/>
+/// <seealso href="https://blog.csdn.net/x___v/article/details/8841307"/>
+/// <seealso href="https://learn.microsoft.com/en-us/previous-versions/windows/desktop/legacy/ms632657(v=vs.85)"/>
 public static class ByteExtensions
 {
     /// <summary>
@@ -117,5 +119,47 @@ public static class ByteExtensions
     public static string ToBinaryString(this byte b)
     {
         return Convert.ToString(b, 2).PadLeft(8, '0');
+    }
+
+    /// <summary>
+    /// Gets the lower 16-bits (in the form of <see cref="ushort"/>, which is usually <c>WORD</c> in Win32)
+    /// from an unsigned 32-bit value.
+    /// </summary>
+    /// <param name="value">The value to extract lower 16-bits from.</param>
+    /// <returns>The lower 16-bits.</returns>
+    public static ushort LowWord(this uint value)
+    {
+        return (ushort)(value & 0xFFFF);
+    }
+
+    /// <summary>
+    /// Gets the higher 16-bits (in the form of <see cref="ushort"/>, which is usually <c>WORD</c> in Win32)
+    /// from an unsigned 32-bit value.
+    /// </summary>
+    /// <param name="value">The value to extract higher 16-bits from.</param>
+    /// <returns>The higher 16-bits.</returns>
+    public static ushort HighWord(this uint value)
+    {
+        return (ushort)(value >> 16);
+    }
+
+    /// <summary>
+    /// Gets the lower 8-bits (in the form of <see cref="byte"/>) from an unsigned 16-bit value.
+    /// </summary>
+    /// <param name="value">The value to extract lower 8-bits from.</param>
+    /// <returns>The lower 8-bits.</returns>
+    public static byte LowByte(this ushort value)
+    {
+        return (byte)(value & 0xFF);
+    }
+
+    /// <summary>
+    /// Gets the higher 8-bits (in the form of <see cref="byte"/>) from an unsigned 16-bit value.
+    /// </summary>
+    /// <param name="value">The value to extract higher 8-bits from.</param>
+    /// <returns>The higher 8-bits.</returns>
+    public static byte HighByte(ushort value)
+    {
+        return (byte)(value >> 8);
     }
 }
