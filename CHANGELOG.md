@@ -5,11 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-All dates are in UTC+8 unless otherwise specified.
-
-## [Unreleased]
-
-_To be 0.4.0-alpha_
+## [0.4.0-alpha] - 2023/9/26
 
 This is a release towards the Beta phase, with last-minute breaking changes
 (can't do any breaking changes after Beta phase so have to do it now)
@@ -18,13 +14,17 @@ This is a release towards the Beta phase, with last-minute breaking changes
 
 - Added `IDictionary.Invert()` to invert key and values and create a new dictionary
 - Added `Fails.ArgumentNull(string)` for argument null exception with a default message
+- Added `HighWord`, `LowWord`, `HighByte`, `LowByte` support for corresponding types
 
 ### Changed
 
 - Moved extensions to generic `IEnumerable` to a new type `EnumerableExtensions`
 - Moved `CollectionExtensions` to `Util.Enumerables`
-- Moved Key-to-Value-Container types to `NexusKrop.IceCube.Data.Containers` namespace
+- Moved Key-to-Value-Container types to `NexusKrop.IceCube.Data.Containers` name-space
 - Renamed `Throws` to `Fails`
+- Renamed `MathUtil` to `MathUtility`
+- Renamed `ProcessUtil` to `Processes`
+- Yet again, we have moved to GitHub
 
 ### Removed
 
@@ -151,13 +151,14 @@ Please be noted that there are multiple breaking changes in this version.
 
 - Initial release.
 
-[Unreleased]: https://codeberg.org/NexusKrop/IceCube/compare/v0.3.2-alpha...HEAD
-[0.3.2-alpha]: https://codeberg.org/NexusKrop/IceCube/compare/v0.3.1-alpha...v0.3.2-alpha
-[0.3.1-alpha]: https://codeberg.org/NexusKrop/IceCube/compare/v0.3.0-alpha...v0.3.1-alpha
-[0.3.0-alpha]: https://codeberg.org/NexusKrop/IceCube/compare/v0.2.0-alpha...v0.3.0-alpha
-[0.2.0-alpha]: https://codeberg.org/NexusKrop/IceCube/compare/v0.1.4-alpha...v0.2.0-alpha
-[0.1.4-alpha]: https://codeberg.org/NexusKrop/IceCube/compare/v0.1.3-alpha...v0.1.4-alpha
-[0.1.3-alpha]: https://codeberg.org/NexusKrop/IceCube/compare/v0.1.2-alpha...v0.1.3-alpha
-[0.1.2-alpha]: https://codeberg.org/NexusKrop/IceCube/compare/v0.1.1-alpha...v0.1.2-alpha
-[0.1.1-alpha]: https://codeberg.org/NexusKrop/IceCube/compare/v0.1.0-alpha...v0.1.1-alpha
-[0.1.0-alpha]: https://codeberg.org/NexusKrop/IceCube/releases/tag/v0.1.0-alpha
+[Unreleased]: https://github.com/NexusKrop/IceCube/compare/v0.4.0-alpha...HEAD
+[0.4.0-alpha]: https://github.com/NexusKrop/IceCube/compare/v0.3.2-alpha...v0.4.0-alpha
+[0.3.2-alpha]: https://github.com/NexusKrop/IceCube/compare/v0.3.1-alpha...v0.3.2-alpha
+[0.3.1-alpha]: https://github.com/NexusKrop/IceCube/compare/v0.3.0-alpha...v0.3.1-alpha
+[0.3.0-alpha]: https://github.com/NexusKrop/IceCube/compare/v0.2.0-alpha...v0.3.0-alpha
+[0.2.0-alpha]: https://github.com/NexusKrop/IceCube/compare/v0.1.4-alpha...v0.2.0-alpha
+[0.1.4-alpha]: https://github.com/NexusKrop/IceCube/compare/v0.1.3-alpha...v0.1.4-alpha
+[0.1.3-alpha]: https://github.com/NexusKrop/IceCube/compare/v0.1.2-alpha...v0.1.3-alpha
+[0.1.2-alpha]: https://github.com/NexusKrop/IceCube/compare/v0.1.1-alpha...v0.1.2-alpha
+[0.1.1-alpha]: https://github.com/NexusKrop/IceCube/compare/v0.1.0-alpha...v0.1.1-alpha
+[0.1.0-alpha]: https://github.com/NexusKrop/IceCube/releases/tag/v0.1.0-alpha
