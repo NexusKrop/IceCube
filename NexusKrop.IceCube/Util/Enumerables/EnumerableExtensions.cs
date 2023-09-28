@@ -10,29 +10,33 @@ using System.Collections.Generic;
 public static class EnumerableExtensions
 {
     /// <summary>
-    /// Determines whether or not the specified <paramref name="enumerable"/> is empty.
+    /// Determines whether or not the specified <paramref name="enumerable"/> is <see langword="null"/> or empty.
     /// </summary>
     /// <typeparam name="T">The type of the <paramref name="enumerable"/>.</typeparam>
     /// <param name="enumerable">The enumerable to check.</param>
     /// <returns><see langword="true"/> if the <paramref name="enumerable"/> is empty; otherwise, <see langword="false"/>.</returns>
     /// <remarks>
     /// <para>
+    /// If the <paramref name="enumerable"/> is null, this method immediately returns <see langword="null"/>.
+    /// </para>
+    /// <para>
     /// This method iterates <paramref name="enumerable"/> specified, and whenever it gets something it returns <see langword="true"/>;
     /// if there is nothing to iterate, this method returns <see langword="false"/>. This may seems to harm performance; but actually, the iteration
     /// is executed at most once.
     /// </para>
     /// <para>
-    /// However, <see cref="IsEmpty{T}(ICollection{T})"/> is more preferable if available.
+    /// However, other reloads of this method is more preferable if available.
     /// </para>
     /// </remarks>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Major Bug", "S1751", Justification = "Meant to do so")]
-    public static bool IsEmpty<T>(this IEnumerable<T> enumerable)
+    public static bool IsEmpty<T>(this IEnumerable<T>? enumerable)
     {
-#if NET7_0_OR_GREATER
-        foreach (var _ in Checks.ArgNotNull(enumerable))
-#else
-        foreach (var _ in Checks.ArgNotNull(enumerable, nameof(enumerable)))
-#endif
+        if (enumerable == null)
+        {
+            return false;
+        }
+
+        foreach (var _ in enumerable)
         {
             return true;
         }
@@ -41,14 +45,13 @@ public static class EnumerableExtensions
     }
 
     /// <summary>
-    /// Determines whether the collection is empty.
+    /// Determines whether the specified collection is <see langword="null"/> empty.
     /// </summary>
-    /// <typeparam name="T">The type of the collection.</typeparam>
-    /// <param name="collection">The collection.</param>
-    /// <returns><see langword="true"/> if the <paramref name="collection"/> is empty; otherwise, <see langword="false"/>.</returns>
-    public static bool IsEmpty<T>(this ICollection<T> collection)
+    /// <param name="collection">The collection to check.</param>
+    /// <returns><see langword="true"/> if the <paramref name="collection"/> is <see langword="null"/> empty; otherwise, <see langword="false"/>.</returns>
+    public static bool IsEmpty<T>(this ICollection<T>? collection)
     {
-        return collection.Count == 0;
+        return collection == null || collection.Count == 0;
     }
 
     /// <summary>
@@ -133,13 +136,13 @@ public static class EnumerableExtensions
     /// </remarks>
     public static void ForEach<T>(this IEnumerable<T> enumerable, Action<T> action)
     {
-#if NET7_0_OR_GREATER
+#if NET6_0_OR_GREATER
         var act = Checks.ArgNotNull(action);
 #else
         var act = Checks.ArgNotNull(action, nameof(action));
 #endif
 
-#if NET7_0_OR_GREATER
+#if NET6_0_OR_GREATER
         foreach (var x in Checks.ArgNotNull(enumerable))
 #else
         foreach (var x in Checks.ArgNotNull(enumerable, nameof(enumerable)))
@@ -163,13 +166,13 @@ public static class EnumerableExtensions
     /// </remarks>
     public static void ForEach<T>(this IEnumerable<T> enumerable, Func<T, bool> action)
     {
-#if NET7_0_OR_GREATER
+#if NET6_0_OR_GREATER
         var act = Checks.ArgNotNull(action);
 #else
         var act = Checks.ArgNotNull(action, nameof(action));
 #endif
 
-#if NET7_0_OR_GREATER
+#if NET6_0_OR_GREATER
         foreach (var x in Checks.ArgNotNull(enumerable))
 #else
         foreach (var x in Checks.ArgNotNull(enumerable, nameof(enumerable)))

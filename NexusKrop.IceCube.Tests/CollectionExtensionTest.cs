@@ -21,6 +21,22 @@ using System.Collections.Generic;
 public class CollectionExtensionTest
 {
     [Test]
+    public void IsEmpty_EmptyArray()
+    {
+        var emptyArray = Array.Empty<int>();
+
+        Assert.That(emptyArray.IsEmpty(), Is.True);
+    }
+
+    [Test]
+    public void IsEmpty_NullList()
+    {
+        List<int>? nullList = null;
+
+        Assert.That(nullList.IsEmpty(), Is.True);
+    }
+
+    [Test]
     public void Iterate_Action()
     {
         var indicesIterated = 0;
