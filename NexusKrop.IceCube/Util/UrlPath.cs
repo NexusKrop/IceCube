@@ -33,7 +33,11 @@ public static class UrlPath
         {
             builder.Append(part);
 
+#if NET6_0_OR_GREATER
+            if (!part.EndsWith('/'))
+#else
             if (!part.EndsWith("/"))
+#endif
             {
                 builder.Append('/');
             }

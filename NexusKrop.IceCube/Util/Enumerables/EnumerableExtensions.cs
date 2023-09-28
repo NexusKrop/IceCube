@@ -22,10 +22,10 @@ public static class EnumerableExtensions
     /// is executed at most once.
     /// </para>
     /// <para>
-    /// However, <see cref="IsEmpty{T}(ICollection{T})"/> is more perferrable if available.
+    /// However, <see cref="IsEmpty{T}(ICollection{T})"/> is more preferable if available.
     /// </para>
     /// </remarks>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Major Bug", "S1751:Loops with at most one iteration should be refactored", Justification = "Meant to do so")]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Major Bug", "S1751", Justification = "Meant to do so")]
     public static bool IsEmpty<T>(this IEnumerable<T> enumerable)
     {
 #if NET7_0_OR_GREATER

@@ -47,7 +47,9 @@ public static class CollectionExtensions
     /// <returns>The reversed dictionary.</returns>
     public static IDictionary<TValue, TKey> Invert<TKey, TValue>(this IDictionary<TKey, TValue> dictionary)
     {
+#pragma warning disable CS8714 
         var dict = new Dictionary<TValue, TKey>(dictionary.Count);
+#pragma warning restore CS8714
 
         foreach (var pair in dictionary)
         {
